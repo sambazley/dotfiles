@@ -1,0 +1,10 @@
+[Unit]
+Description=mpDris2 - Music Player Daemon on %I D-Bus bridge
+
+[Service]
+Restart=on-failure
+ExecStart=/usr/bin/mpDris2 --host=%I --bus-name=org.mpris.MediaPlayer2.mpd.remote
+BusName=org.mpris.MediaPlayer2.mpd.%I
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,6 @@
+[Unit]
+Description=rss2email service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/r2e run

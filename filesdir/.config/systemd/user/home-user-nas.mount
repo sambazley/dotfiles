@@ -1,0 +1,14 @@
+[Unit]
+Description=%h/nas
+After=network-online.target
+Wants=network-online.target
+
+[Mount]
+What=10.10.0.1:/srv/nas
+Where=%h/nas
+Options=
+Type=sshfs
+TimeoutSec=30
+
+[Install]
+WantedBy=multi-user.target

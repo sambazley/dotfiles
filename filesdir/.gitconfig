@@ -1,0 +1,11 @@
+[user]
+	email = sambazley@fastmail.com
+	name = Sam Bazley
+	signingkey = 23ECE6A237B8DB3A
+[color]
+	ui = auto
+[core]
+	excludesfile = /home/user/.gitignore
+	abbrev = 12
+[pretty]
+	fixes = Fixes: %h (\"%s\")

@@ -1,0 +1,162 @@
+#!/usr/bin/env bash
+
+trap "trap - SIGTERM && kill -- -$$" SIGINT SIGTERM
+
+HOST=$(hostname)
+
+PIDFILE="/tmp/bspwmrcpid"
+
+if [[ -f "$PIDFILE" ]]; then
+    lastpid="$(cat "$PIDFILE")"
+    if [[ -d "/proc/$lastpid" ]]; then
+        cmdline="$(xargs -0 -n1 < "/proc/$lastpid/cmdline")"
+        script="$(basename "$(echo "$cmdline" | head -n2 | tail -n1)")"
+
+        if [[ "$script" == "$(basename "$0")" ]]; then
+            kill -- -$lastpid
+        fi
+    fi
+fi
+echo "$$" > "$PIDFILE"
+
+function fork {
+    local EXE="${EXE:-"$*"}"
+    if ! pgrep -xf "$EXE" > /dev/null; then
+        setsid "$@" >/dev/null 2>&1 &
+    fi
+}
+
+if [[ "$HOST" == "SamLinux" ]]; then
+    bspc monitor DisplayPort-0 -d {1..9} 0
+    bspc monitor DisplayPort-1 -d {1..9} 0
+elif [[ "$HOST" == "SamLaptop" ]]; then
+    bspc monitor eDP -d {1..9} 0
+fi
+
+bspc rule -r "*"
+
+if [[ "$HOST" == "SamLinux" ]]; then
+    bspc rule -a discord desktop='^2:^1'
+fi
+
+bspc rule -a "Gnome-calculator" state=floating
+bspc rule -a "Gnome-system-monitor" state=floating
+
+bspc config top_padding 32
+bspc config single_monocle false
+bspc config gapless_monocle false
+bspc config borderless_monocle false
+bspc config focus_follows_pointer true
+bspc config pointer_motion_interval 6
+bspc config window_gap 10
+bspc config border_width 2
+bspc config honor_size_hints true
+bspc config external_rules_command ~/.config/bspwm/rules
+bspc config ignore_ewmh_struts true
+
+~/.fehbgsolid
+. ~/.imgcol/generated/colors.sh
+
+bspc config active_border_color "$unfocusedcolor"
+bspc config focused_border_color "$focusedcolor"
+bspc config normal_border_color "$bordercolor"
+bspc config presel_feedback_color "$urgentcolor"
+
+SXHKD_FIFO="/tmp/sxhkd.fifo"
+if [[ ! -f "$SXHKD_FIFO" ]]; then
+    mkfifo "$SXHKD_FIFO"
+fi
+
+function setup_kb {
+    pkill sxhkd
+
+    #if [[ "$(setxkbmap -query | grep layout: | awk '{print $2}')" != "gb" ]]; then
+        xsetroot -cursor_name watch && \
+        setxkbmap -layout gb -option && \
+        xmodmap ~/.Xmodmap && \
+        xsetroot -cursor_name left_ptr
+    #fi
+
+    SXHKD_SHELL="/usr/bin/sh" sxhkd -s "$SXHKD_FIFO" &
+}
+
+setup_kb
+
+if [[ "$HOST" == "SamLinux" ]]; then
+    fork /usr/lib/kdeconnectd
+    fork discord
+elif [[ "$HOST" == "SamLaptop" ]]; then
+    fork light-locker
+fi
+
+fork thunar --daemon
+fork sudo firewall-applet
+
+~/blockbar/blockbar &
+sleep 0.5
+picom --config ~/.config/picom/config &
+
+xdo above -t "$(xdo id -N Bspwm -n root | sort | head -n 1)" $(xdo id -n blockbar)
+
+tail -f ~/.config/xob/fifo | xob &
+
+function updateBlock {
+    ID=$(bbc list | grep "$1" | awk '{print $1}')
+    bbc exec $ID
+}
+
+bspc subscribe | while read line; do
+    updateBlock "bspwm-windows" &
+    updateBlock "bspwm-desktops" &
+done &
+
+dbus-monitor --system --profile "sender='org.bluez'" 2>/dev/null | waiter 100 | while read line; do
+    updateBlock "bluetooth"
+done &
+
+dbus-monitor --session "path=/org/mpris/MediaPlayer2,member=PropertiesChanged" | waiter 50 | while read line; do
+    updateBlock "mpris"
+done &
+
+pactl subscribe | waiter 100 | while read line; do
+    updateBlock "volume"
+done &
+
+stdbuf -oL xkbevd 2>&1 | grep --line-buffered "XkbNewKeyboard" | while read line; do
+#    device="$(echo "$line" | sed -E 's/.*device ([0-9]+).*/\1/g')"
+#
+#    touch /tmp/kbdlockpre
+#
+#    if (xinput | grep "id=$device\s" | grep -q "\[master keyboard"); then
+#        if [[ ! -f "/tmp/kbdlock" ]]; then
+#            touch /tmp/kbdlock
+#
+#setup_kb
+#
+#            sleep 1
+#
+#            rm /tmp/kbdlock
+#        fi
+#    fi
+#
+#    rm /tmp/kbdlockpre
+#
+done &
+#rm -f /tmp/kbdlock
+#rm -f /tmp/kbdlockpre
+
+while :; do
+    if read -r line < "$SXHKD_FIFO"; then
+        if [[ "$line" == "Hsuper + r" ]]; then
+            echo "Resize" > ~/.config/blockbar/scripts/data/sxhkd_status
+        elif [[ "$line" == "Hsuper + m" ]]; then
+            echo "Move" > ~/.config/blockbar/scripts/data/sxhkd_status
+        elif [[ "$line" == "EEnd chain" ]]; then
+            rm ~/.config/blockbar/scripts/data/sxhkd_status
+        fi
+
+        updateBlock "sxhkd"
+    fi
+done &
+
+wait

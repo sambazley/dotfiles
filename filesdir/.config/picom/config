@@ -1,0 +1,14 @@
+backend="glx";
+
+opacity-rule = ["20:class_g = 'Bspwm' && class_i = 'presel_feedback'"];
+
+wintypes:
+{
+    tooltip =
+    {
+        fade = true;
+        shadow = false;
+        opacity = 0.85;
+        focus = false;
+    };
+};

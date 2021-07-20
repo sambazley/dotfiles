@@ -1,0 +1,49 @@
+#!/bin/bash
+
+wid=$1
+class=$2
+instance=$3
+
+title="$(xtitle $wid)"
+
+if [[ "$class" == "Steam" ]]; then
+    if [[ "$title" != "Steam" ]]; then
+        echo "state=floating"
+    fi
+fi
+
+if [[ "$instance" == "mpterm" ]]; then
+    echo "locked=on"
+elif [[ "$class" == "update" ]]; then
+    echo "rectangle=700x420+610+330"
+fi
+
+case "$instance" in
+    "mpterm" | "floating" | "update")
+        echo "state=floating"
+        ;;
+esac
+
+if [[ "$title" == "Steam Keyboard" ]]; then
+    echo "state=floating"
+    echo "focus=off"
+    echo "layer=above"
+fi
+
+if [[ "$title" == "Discord Updater" ]]; then
+    echo "state=floating"
+fi
+
+if [[ "$class" == "Zathura" ]]; then
+    echo "state=tiled"
+fi
+
+if [[ "$class" == "firefox" ]] && [[ "$title" == "Picture-in-Picture" ]]; then
+    echo "sticky=on"
+fi
+
+case "$(xprop -id "$wid" _NET_WM_WINDOW_TYPE)" in
+    *_NET_WM_WINDOW_TYPE_UTILITY* )
+        echo "layer=above"
+        ;;
+esac

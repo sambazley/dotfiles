@@ -1,0 +1,191 @@
+@import url('file:///home/user/.imgcol/generated/colors.css');
+
+:root {
+    --toolbar-bgcolor: var(--color0) !important;
+    --toolbar-bgimage: none !important;
+
+    --toolbarbutton-border-radius: 2px !important;
+    --toolbar-color: white !important;
+    --toolbarbutton-icon-fill-opacity: 90% !important;
+    --toolbar-start-end-padding: 4px !important;
+    --avatar-image-url: url(chrome://browser/skin/fxa/avatar.svg) !important;
+
+    --toolbar-field-focus-border-color: transparent !important;
+
+    --sidebar-min-width: 32px;
+    --sidebar-max-width: 260px;
+
+    --arrowpanel-menuitem-padding: 4px 8px !important;
+}
+
+#PanelUI-button {
+    border-inline-start: none !important;
+}
+
+#contentAreaContextMenu {
+    margin: 2px 0 0 2px;
+}
+
+findbar {
+    background-color: white !important;
+}
+#navigator-toolbox::after {
+    border-bottom: none;
+}
+
+#navigator-toolbox {
+    border-bottom: none !important;
+}
+
+#titlebar {
+    color: var(--toolbar-bgcolor);
+}
+
+#tabbrowser-tabs {
+    visibility: collapse !important;
+}
+
+#main-window[privatebrowsingmode="temporary"] #tabbrowser-tabs,
+#main-window[inFullscreen] #tabbrowser-tabs {
+    visibility: visible !important;
+}
+
+#main-window[inDOMFullscreen] #tabbrowser-tabs {
+    visibility: collapse !important;
+}
+
+#main-window[inDOMFullscreen] #sidebar-box,
+#main-window[inFullscreen] #sidebar-box {
+    display: none !important;
+}
+
+#browser {
+    background: black;
+}
+
+#tabbrowser-tabbox {
+    position: static;
+    width: 100%;
+    height: 100%;
+}
+
+.tab-text {
+    color: white;
+}
+.tab-close-button {
+    fill: white !important;
+}
+
+#new-tab-button {
+    list-style-image: url("chrome://browser/skin/zoom-in.svg") !important;
+}
+
+#back-button .toolbarbutton-icon,
+#forward-button .toolbarbutton-icon {
+    padding: 5px !important;
+    padding-top: 4px !important;
+}
+
+#new-tab-button .toolbarbutton-icon {
+    padding: 3px 4px 4px 3px !important;
+}
+
+#sidebar-box {
+    overflow: hidden;
+    width: var(--sidebar-min-width);
+    min-width: var(--sidebar-min-width);
+    max-width: var(--sidebar-min-width);
+    position: relative;
+    transition: all 0.2s ease;
+    mask-image: linear-gradient(to left,
+                                #ffffffb3 0px,
+                                #ffffffe0 1px,
+                                white 10px);
+    -moz-box-direction: reverse;
+    z-index: 1;
+}
+
+#sidebar-box:hover,
+#sidebar-box:not([sidebarcommand="tabcenter-reborn_ariasuni-sidebar-action"]) {
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 3, 0.40);
+    mask-image: none;
+}
+
+#sidebar-switcher-arrow {
+    transform: rotate(180deg);
+}
+
+#sidebar-box[sidebarcommand="tabcenter-reborn_ariasuni-sidebar-action"]:hover {
+    margin-right: calc(var(--sidebar-min-width) - var(--sidebar-max-width));
+}
+
+#sidebar-box:hover,
+#sidebar-box:not([sidebarcommand="tabcenter-reborn_ariasuni-sidebar-action"]),
+#sidebar-header,
+#sidebar {
+    width: var(--sidebar-max-width) !important;
+    min-width: var(--sidebar-max-width) !important;
+    max-width: var(--sidebar-max-width) !important;
+}
+
+#sidebar-splitter {
+    display: none;
+}
+
+#sidebar-title {
+    display: none;
+}
+
+#sidebar-header {
+    padding: 0px !important;
+    height: 30px;
+    border-top: 1px solid transparent;
+    transition: all 0.2s ease;
+    opacity: 0;
+}
+
+#sidebar-box:not([sidebarcommand="tabcenter-reborn_ariasuni-sidebar-action"]) > #sidebar-header,
+#sidebar-box:hover > #sidebar-header {
+    border-top: 1px solid var(--sidebar-border-color);
+    opacity: 1;
+}
+
+#sidebar-reverse-position,
+#sidebar-reverse-position + toolbarseparator {
+    display: none;
+}
+
+#sidebar {
+    position: relative;
+}
+
+#urlbar {
+    border: none;
+}
+
+#pageActionButton {
+    margin-left: -2px;
+    margin-right: 4px;
+}
+
+#window-controls {
+    filter: invert(75%);
+}
+#nav-bar toolbarpaletteitem[id^="wrapper-customizableui-special-spring"], #nav-bar toolbarspring {
+    -moz-box-flex: 1 !important;
+}
+
+.findbar-button[checked="true"]:not(:hover) {
+    color: white !important;
+}
+:root[uidensity="compact"] #nav-bar[brighttext] > #PanelUI-button {
+    border-image-source: linear-gradient(transparent 4px, rgba(100%,100%,100%,.2) 4px, rgba(100%,100%,100%,.2) calc(100% - 4px), transparent calc(100% - 4px));
+}
+:root[uidensity="compact"] #PanelUI-button {
+    margin-inline-start: 3px;
+    border-inline-start: 1px solid;
+    border-image: linear-gradient(transparent 4px, rgba(0,0,0,.1) 4px, rgba(0,0,0,.1) calc(100% - 4px), transparent calc(100% - 4px));
+    border-image-source: linear-gradient(transparent 4px, rgba(0, 0, 0, 0.1) 4px, rgba(0, 0, 0, 0.1) calc(100% - 4px), transparent calc(100% - 4px));
+    border-image-slice: 100%;
+    border-image-slice: 1;
+}

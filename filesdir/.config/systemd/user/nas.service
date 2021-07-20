@@ -1,0 +1,13 @@
+[Unit]
+Description=NAS mount
+After=network-online.target local-fs.target
+Wants=network-online.target local-fs.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/sshfs sam@10.10.0.1:/srv/nas %h/nas
+ExecStop=/usr/bin/fusermount3 -u %h/nas
+
+[Install]
+WantedBy=default.target

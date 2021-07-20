@@ -1,0 +1,9 @@
+[Unit]
+Description=rss2email timer
+
+[Timer]
+OnCalendar=*-*-* *:00:00
+Unit=r2e.service
+
+[Install]
+WantedBy=timers.target

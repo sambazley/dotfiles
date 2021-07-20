@@ -1,0 +1,64 @@
+set realname        = "Sam Bazley"
+set from            = sambazley@fastmail.com
+set use_from        = yes
+set pager_stop
+set help            = no
+set user_agent      = no
+set edit_headers    = yes
+
+set folder=~/mail/
+
+unmailboxes *
+set folder    = ~/mail/fastmail
+set spoolfile = +INBOX
+set record    = +Sent
+set trash     = +Trash
+mailboxes     =INBOX =Archive =Drafts =Sent =Spam =Trash
+
+set hide_thread_subject = no
+set strict_threads = yes
+set sort = reverse-threads
+set sort_aux = last-date-received
+set charset = utf-8
+
+set sidebar_visible = yes
+set sidebar_folder_indent = yes
+set sidebar_divider_char = ' '
+set sidebar_short_path
+set sidebar_width = 20
+
+color sidebar_divider default color15
+
+set header_cache    = ~/mail/cache/
+
+set hidden_host
+
+set beep_new
+set pipe_decode
+set thorough_search
+
+set mailcap_path = ~/.config/mutt/mailcap
+auto_view text/html
+alternative_order text/plain text/enriched text/html
+
+set index_format="%4C │ %Z │ %{%F %R %z} │ %-20.20n │ %s"
+
+set editor = vim
+
+bind pager        <up>   previous-line
+bind pager        <down> next-line
+bind pager        k      previous-line
+bind pager        j      next-line
+#bind pager        g      top
+bind pager        G      bottom
+#bind attach,index g      first-entry
+bind attach,index G      last-entry
+
+unbind * d
+unbind * D
+
+macro index        K      ":exec sidebar-prev\n:exec sidebar-open\n"
+macro index        J      ":exec sidebar-next\n:exec sidebar-open\n"
+
+set implicit_autoview=yes
+auto_view text/html

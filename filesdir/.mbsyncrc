@@ -1,0 +1,22 @@
+IMAPAccount fastmail
+Host imap.fastmail.com
+User sambazley@fastmail.com
+PassCmd "~/mail/password fastmail"
+SSLType IMAPS
+
+IMAPStore fastmail-remote
+Account fastmail
+
+MaildirStore fastmail-local
+Path ~/mail/fastmail/
+Inbox ~/mail/fastmail/INBOX
+
+Channel fastmail
+Master :fastmail-remote:
+Slave :fastmail-local:
+CopyArrivalDate yes
+Create Both
+Patterns *
+SyncState *
+Sync All
+Expunge Both

@@ -1,0 +1,35 @@
+~/.config/xob/styles.cfg
+default = {
+    x         = {relative = 0.0; offset = 1876;};
+    y         = {relative = 0.0; offset = 46;};
+    length    = {relative = 0.0; offset = 150;};
+    thickness = 18;
+    outline   = 0;
+    border    = 2;
+    padding   = 4;
+
+    overflow = "proportional";
+
+    color = {
+        normal = {
+            fg     = "<% focusedcolor %>";
+            bg     = "<% color0 %>";
+            border = "<% bordercolor %>";
+        };
+        alt = {
+            fg     = "#555555";
+            bg     = "#000000";
+            border = "#555555";
+        };
+        overflow = {
+            fg     = "<% focusedcolor %>";
+            bg     = "<% color0 %>";
+            border = "<% color1 %>";
+        };
+        altoverflow = {
+            fg     = "#550000";
+            bg     = "#000000";
+            border = "#550000";
+        };
+    };
+};

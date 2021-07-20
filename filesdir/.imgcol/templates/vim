@@ -1,0 +1,136 @@
+~/.vim/theme.vim
+
+if &t_Co == 8
+    finish
+endif
+
+let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
+set termguicolors
+
+hi clear
+
+hi SpecialKey term=bold ctermfg=81 guifg=#5fd7ff
+"EndOfBuffer
+hi NonText term=bold ctermfg=12 guifg=<% color12 %>
+hi Directory term=bold ctermfg=159 guifg=#afffff
+hi ErrorMsg term=standout ctermfg=15 guifg=<% color15 %> ctermbg=1 guibg=<% color1 %>
+hi IncSearch term=reverse cterm=reverse gui=reverse
+hi Search term=reverse ctermfg=0 guifg=<% color0 %> ctermbg=11 guibg=<% color11 %>
+hi MoreMsg term=bold ctermfg=121 guifg=#87ffaf
+hi ModeMsg term=bold cterm=bold gui=bold
+hi LineNr term=underline ctermfg=11 guifg=<% color11 %>
+"LineNrAbove
+"LineNrBelow
+hi CursorLineNr term=bold cterm=underline gui=underline ctermfg=11 guifg=<% color11 %>
+hi Question term=standout ctermfg=121 guifg=#87ffaf
+hi StatusLine term=bold,reverse cterm=bold,reverse gui=bold,reverse
+hi StatusLineNC term=reverse cterm=reverse gui=reverse
+hi VertSplit term=reverse cterm=reverse gui=reverse
+hi Title term=bold ctermfg=225 guifg=#ffd7ff
+hi Visual term=reverse ctermbg=242 guibg=#6c6c6c
+hi VisualNOS term=bold,underline cterm=bold,underline gui=bold,underline
+hi WarningMsg term=standout ctermfg=224 guifg=#ffd7d7
+hi WildMenu term=standout ctermfg=0 guifg=<% color0 %> ctermbg=11 guibg=<% color11 %>
+hi Folded term=standout ctermfg=14 guifg=<% color14 %> ctermbg=242 guibg=#6c6c6c
+hi FoldColumn term=standout ctermfg=14 guifg=<% color14 %> ctermbg=242 guibg=#6c6c6c
+hi DiffAdd term=bold ctermbg=4 guibg=<% color4 %>
+hi DiffChange term=bold ctermbg=5 guibg=<% color5 %>
+hi DiffDelete term=bold ctermfg=12 guifg=<% color12 %> ctermbg=6 guibg=<% color6 %>
+hi DiffText term=reverse cterm=bold gui=bold ctermbg=9 guibg=<% color9 %>
+hi SignColumn term=standout ctermfg=14 guifg=<% color14 %> ctermbg=242 guibg=#6c6c6c
+hi Conceal ctermfg=239 guifg=#4e4e4e guibg=bg
+hi SpellBad term=reverse ctermbg=9 guibg=<% unfocusedcolor %> guisp=Red
+hi SpellCap term=reverse ctermbg=12 guibg=bg guisp=Blue
+hi SpellRare term=reverse ctermbg=13 guibg=<% color13 %> guisp=Magenta
+hi SpellLocal term=underline ctermbg=14 guibg=<% bordercolor %> guisp=Cyan
+hi Pmenu ctermfg=0 guifg=<% color0 %> ctermbg=13 guibg=<% color13 %>
+hi PmenuSel ctermfg=242 guifg=#6c6c6c ctermbg=0 guibg=<% color0 %>
+hi PmenuSbar ctermbg=248 guibg=#a8a8a8
+hi PmenuThumb ctermbg=15 guibg=<% color15 %>
+hi TabLine term=underline cterm=underline gui=underline ctermfg=15 guifg=<% color15 %> ctermbg=242 guibg=#6c6c6c
+hi TabLineSel term=bold cterm=bold gui=bold
+hi TabLineFill term=reverse cterm=reverse gui=reverse
+hi CursorColumn term=reverse ctermbg=242 guibg=#6c6c6c
+hi CursorLine term=underline cterm=underline gui=underline
+hi ColorColumn term=reverse ctermbg=1 guibg=<% color1 %>
+"QuickFixLine
+hi StatusLineTerm term=bold,reverse cterm=bold gui=bold ctermfg=0 guifg=<% color0 %> ctermbg=121 guibg=#87ffaf guifg=bg
+hi StatusLineTermNC term=reverse ctermfg=0 guifg=<% color0 %> ctermbg=121 guibg=#87ffaf guifg=bg
+hi Cursor guifg=bg guibg=fg
+hi lCursor guifg=bg guibg=fg
+hi Normal ctermbg=0 ctermfg=15 guibg=<% color0 %> guifg=<% color15 %>
+hi MatchParen term=reverse ctermbg=6 guibg=<% color6 %>
+hi ToolbarLine term=underline ctermbg=242 guibg=#6c6c6c
+hi ToolbarButton cterm=bold gui=bold ctermfg=0 guifg=<% color0 %> ctermbg=7 guibg=<% color7 %>
+hi Comment term=bold ctermfg=14 guifg=<% color14 %>
+hi Constant term=underline ctermfg=13 guifg=<% color13 %>
+hi Special term=bold ctermfg=224 guifg=#ffd7d7
+hi Identifier term=underline cterm=bold gui=bold ctermfg=14 guifg=<% color14 %>
+hi Statement term=bold ctermfg=11 guifg=<% color11 %>
+hi PreProc term=underline ctermfg=81 guifg=#5fd7ff
+hi Type term=None gui=None ctermfg=121 guifg=#87ffaf
+hi Underlined term=underline cterm=underline gui=underline ctermfg=81 guifg=#5fd7ff
+hi Ignore ctermfg=0 guifg=<% color0 %> guifg=bg
+hi Error term=reverse ctermfg=15 guifg=<% color15 %> ctermbg=9 guibg=<% color9 %>
+hi Todo term=standout ctermfg=0 guifg=<% color0 %> ctermbg=11 guibg=<% color11 %>
+"String
+"Character
+"Number
+"Boolean
+"Float
+"Function
+"Conditional
+"Repeat
+"Label
+"Operator
+"Keyword
+"Exception
+"Include
+"Define
+"Macro
+"PreCondit
+"StorageClass
+"Structure
+"Typedef
+"Tag
+"SpecialChar
+"Delimiter
+"SpecialComment
+"Debug
+hi ExtraWhitespace ctermbg=1 guibg=<% color1 %>
+"LspErrorText
+"LspWarningText
+"LspInformationText
+"LspHintText
+"LspErrorLine
+"LspWarningLine
+"LspInformationLine
+"LspHintLine
+"LspErrorHighlight
+"LspWarningHighlight
+"LspInformationHighlight
+"LspHintHighlight
+"lspReference
+
+hi SLModified ctermfg=0 ctermbg=3 guifg=<% color0 %> guibg=<% color3 %>
+hi SLReadOnly cterm=bold ctermbg=1 guibg=<% color1 %>
+
+let g:terminal_ansi_colors = [
+    \ "<% color0 %>",
+    \ "<% color1 %>",
+    \ "<% color2 %>",
+    \ "<% color3 %>",
+    \ "<% color4 %>",
+    \ "<% color5 %>",
+    \ "<% color6 %>",
+    \ "<% color7 %>",
+    \ "<% color8 %>",
+    \ "<% color9 %>",
+    \ "<% color10 %>",
+    \ "<% color11 %>",
+    \ "<% color12 %>",
+    \ "<% color13 %>",
+    \ "<% color14 %>",
+    \ "<% color15 %>",
+    \ ]

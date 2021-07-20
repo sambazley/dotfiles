@@ -1,0 +1,61 @@
+~/.config/dunst/dunstrc
+[global]
+markup=yes
+plain_text=no
+font=Mono 10
+format="<b>%s</b>\n%b %p"
+sort=yes
+indicate_hidden=yes
+alignment=center
+bounce_freq=1
+show_age_threshold=60
+word_wrap=yes
+ignore_newline=no
+stack_duplicates=yes
+hide_duplicates_count=true
+
+geometry="400x100-15-15"
+shrink=yes
+transparency=5
+
+idle_threshold=10
+monitor=0
+follow=none
+sticky_history=yes
+history_length=15
+show_indicators=yes
+line_height=3
+separator_height=2
+padding=6
+horizontal_padding=6
+separator_color=frame
+startup_notification=false
+dmenu=rofi -show run -dmenu -p dunst:
+browser=xdg-open
+
+icon_position=left
+max_icon_size=80
+icon_folders = /usr/share/icons/Paper/48x48/mimetypes/:/usr/share/icons/Paper/48x48/status/:/usr/share/icons/Paper/48x48/devices/:/usr/share/icons/Paper/48x48/notifications/:/usr/share/icons/Paper/48x48/emblems/
+
+frame_width=3
+frame_color="<% bordercolor %>"
+
+[urgency_low]
+foreground="<% color7 %>"
+background="<% color0 %>"
+timeout=4
+
+[urgency_normal]
+foreground="<% color7 %>"
+background="<% color0 %>"
+timeout=6
+
+[urgency_critical]
+foreground="<% color7 %>"
+background="<% color0 %>"
+frame_color="<% color1 %>"
+timeout=10
+
+[shortcuts]
+history=mod4+q
+context=mod4+z

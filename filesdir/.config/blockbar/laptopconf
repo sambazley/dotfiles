@@ -1,0 +1,96 @@
+{
+    "height": 27,
+    "marginvert": 6,
+    "marginhoriz": 10,
+    "background": "#191e2800",
+    "font": "Mono 9",
+    "divcolor": "#11151cff",
+    "modules": [
+        {
+            "path": "/home/user/blockbar/modules/background/background.so",
+            "settings": {
+                "color": "#191e28ff",
+                "bordercolor": "#11151cff"
+            }
+        },
+        {
+            "path": "/home/user/blockbar/modules/vbar/vbar.so",
+            "settings": {
+                "barcolor": "#4b5a78ff",
+                "width": 4
+            }
+        }
+    ],
+    "left": [
+        {
+            "module": "subblocks",
+            "exec": "~/.config/blockbar/scripts/bspwm-desktops",
+            "nodiv": true,
+            "eachmon": true
+        },
+        {
+            "module": "subblocks",
+            "exec": "~/.config/blockbar/scripts/bspwm-windows",
+            "eachmon": true
+        },
+        {
+            "module": "vbar",
+            "exec": "~/.config/blockbar/scripts/disk-usage",
+            "interval": 2000
+        },
+	{
+	    "module": "subblocks",
+	    "exec": "/home/user/.config/blockbar/scripts/sxhkd",
+	    "nodiv": true
+	}
+    ],
+    "center": [
+        {
+            "exec": "~/.config/blockbar/scripts/mpris"
+        }
+    ],
+    "right": [
+        {
+            "exec": "~/.config/blockbar/scripts/power",
+            "paddingleft": -2
+        },
+        {
+            "exec": "~/.config/blockbar/scripts/bluetooth",
+            "padding": -2,
+            "nodiv": true
+        },
+        {
+            "module": "constwidth",
+            "exec": "~/.config/blockbar/scripts/volume",
+            "paddingright": -1,
+            "nodiv": true
+        },
+        {
+            "exec": "~/.config/blockbar/scripts/battery"
+        },
+        {
+            "exec": "~/.config/blockbar/scripts/time",
+            "interval": 10000
+        },
+        {
+            "module": "constwidth",
+            "exec": "~/.config/blockbar/scripts/updates",
+            "interval": 1.8e+06
+        },
+        {
+            "exec": "~/.config/blockbar/scripts/mail"
+        },
+        {
+            "exec": "BLOCK_INSTANCE=k10temp ~/.config/blockbar/scripts/temp",
+            "interval": 5000
+        },
+        {
+            "exec": "~/.config/blockbar/scripts/ip",
+            "interval": 30000
+        },
+        {
+            "exec": "~/.config/blockbar/scripts/systemdmon",
+            "interval": 60000
+        }
+    ]
+}

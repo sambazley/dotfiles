@@ -1,0 +1,57 @@
+#!/usr/bin/env ruby
+
+require_relative 'sbtheme'
+require 'json'
+
+sb = -1
+if ENV['BLOCK_BUTTON'] == "1" && !ENV['SUBBLOCK'].empty? then
+    sb = ENV['SUBBLOCK'].to_i
+elsif ENV['BLOCK_BUTTON'] == "4" then
+    `i3-msg workspace prev_on_output`
+elsif ENV['BLOCK_BUTTON'] == "5" then
+    `i3-msg workspace next_on_output`
+end
+
+print '{"subblocks":['
+
+workspaces = JSON.parse(`i3-msg -t get_workspaces`)
+
+blkCount = 0
+
+workspaces.each do |w|
+    if blkCount != 0 then
+        print ','
+    end
+
+    print '{'
+
+    $block['text'] = "\"#{w["name"]}\""
+
+    if sb == blkCount then
+        `i3-msg workspace number #{w["num"]}`
+    end
+
+    if w["focused"] then
+        $block['background'] = $colfoc
+    elsif w["urgent"] then
+        $block['background'] = $colurgent
+    else
+        $block['background'] = $colunfoc
+    end
+
+    firstProp = 1
+    $block.each do |k, v|
+        if firstProp == 0 then
+            print ','
+        end
+        firstProp = 0
+
+        print "\"#{k}\":#{v}"
+    end
+
+    print '}'
+
+    blkCount += 1
+end
+
+print ']}'

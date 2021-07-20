@@ -1,0 +1,11 @@
+[Unit]
+Description=Barrier server
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+ExecStart=/usr/bin/barriers --no-daemon --config /etc/barrier.conf --enable-crypto
+Restart=on-failure
+
+[Install]
+WantedBy=graphical.target

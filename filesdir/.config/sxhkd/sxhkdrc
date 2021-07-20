@@ -1,0 +1,160 @@
+super + Return
+	alacritty
+
+hyper + Return
+	alacritty --class floating
+
+super + d
+	rofi -show-icons -combi-modi drun,run -show combi -modi combi,run -m -1
+
+hyper + d
+	~/.config/rofi/windowlist.sh
+
+super + p
+	rofi-pass
+
+super + shift + r
+	bspc wm -r
+
+super + {shift + space,f,t}
+	state={floating,fullscreen,pseudo_tiled}; \
+	bspc query -N -n .focused.$state \
+	&& bspc node -t tiled \
+	|| bspc node -t $state
+
+super + space
+	bspc query -N -n .focused.tiled \
+	&& bspc node last.floating -f \
+	|| bspc node last.tiled -f
+
+super + shift + q
+	bspc node -c
+
+super + {1,2,3,4,5,6,7,8,9,0}
+	bspc desktop -f ^1:^{1,2,3,4,5,6,7,8,9,10}
+
+super + {F1,F2,F3,F4,F5,F6,F7,F8,F9,F10}
+	bspc desktop -f ^2:^{1,2,3,4,5,6,7,8,9,10}
+
+super + shift + {1,2,3,4,5,6,7,8,9,0}
+	bspc node -d ^1:^{1,2,3,4,5,6,7,8,9,10}
+
+super + shift + {F1,F2,F3,F4,F5,F6,F7,F8,F9,F10}
+	bspc node -d ^2:^{1,2,3,4,5,6,7,8,9,10}
+
+super + {k,j,h,l}
+super + {Up,Down,Left,Right}
+	bspc node -f {north,south,west,east}
+
+super + shift + {k,j,h,l}
+super + shift + {Up,Down,Left,Right}
+	bspc node --presel-dir \~{north,south,west,east}
+
+super + mod1 + {Left,Right}
+	BAR_OUTPUT="$(bspc query -M -m focused --names)" BLOCK_BUTTON={4,5} ~/.config/blockbar/scripts/bspwm-desktops
+
+super + ctrl + {Left,Right}
+	BAR_OUTPUT="$(bspc query -M -m focused --names)" BLOCK_BUTTON={4,5} ~/.config/blockbar/scripts/bspwm-windows
+
+super + r : {k,j,h,l}
+super + r : {Up,Down,Left,Right}
+	{dir="south" d="0 -40",dir="south" d="0 40",dir="east" d="-40 0",dir="east" d="40 0"};\
+	if bspc query -N -n focused.tiled >/dev/null; then \
+		if ! bspc query --nodes -n "$dir.local" >/dev/null; then \
+			bspc node -z top_left $d; \
+		else \
+			bspc node -z bottom_right $d; \
+		fi \
+	else \
+		bspc node -z bottom_right $d; \
+	fi
+
+super + m : {k,j,h,l}
+super + m : {Up,Down,Left,Right}
+	bspc node --move {0 -40,0 40,-40 0,40 0}
+
+super + a
+	bspc node -f @parent
+
+super + e
+	bspc node --circulate forward
+
+super + shift + e
+	bspc node --circulate backward
+
+super + w
+	bspc desktop --layout next
+
+super + b
+	bspc node --balance
+
+super + v
+	bspc node --rotate 90
+
+Print
+	flameshot gui
+
+{XF86AudioPlay, XF86Tools}
+	BLOCK_BUTTON=1 ~/.config/blockbar/scripts/mpris; \
+	bbc exec "$(bbc list | grep mpris | awk '\{print $1\}')"
+
+XF86AudioNext
+	BLOCK_BUTTON=5 ~/.config/blockbar/scripts/mpris; \
+	bbc exec "$(bbc list | grep mpris | awk '\{print $1\}')"
+
+XF86AudioPrev
+	BLOCK_BUTTON=4 ~/.config/blockbar/scripts/mpris
+	bbc exec "$(bbc list | grep volume | awk '\{print $1\}')"
+
+{XF86AudioMute, XF86AudioRaiseVolume, XF86AudioLowerVolume}
+	DATA=$(BLOCK_BUTTON={2,4,5} ~/.config/blockbar/scripts/volume); \
+	bbc property "$(bbc list | grep volume | awk '\{print $1\}')" execdata $DATA
+
+super + {XF86AudioRaiseVolume, XF86AudioLowerVolume}
+	mpc volume {+,-}5
+
+{hyper,super} + XF86AudioPlay
+	id=$(xdotool search --classname "mpterm" | head -n1); \
+	if [[ -n "$id" ]]; then \
+		xkill -id "$id"; \
+	else \
+		alacritty --class mpterm -e ncmpcpp; \
+	fi
+
+hyper + {Up,Down,Left,Right}
+	bspc node -s {north,south,west,east} --follow
+
+hyper + f
+	bspc node -s biggest.local --follow
+
+super + s
+	marked=$(bspc query -N -n .marked); \
+	if [[ -n "$marked" ]]; then \
+		bspc node $marked -g marked; \
+	fi; \
+	bspc node -g marked
+
+hyper + s
+	marked=$(bspc query -N -n .marked); \
+	if [[ -n "$marked" ]]; then \
+		bspc node -i; \
+		bspc node $marked --to-node $(bspc query -N -n any.local.leaf.!window); \
+	fi
+
+super + ctrl + l
+	light-locker-command -l
+
+super + XF86Sleep
+	if [[ "$(xrandr | grep "DisplayPort-1")" =~ \\+ ]]; then \
+		xrandr --output DisplayPort-1 --off; \
+	else \
+		sethz DisplayPort-1 "--right-of DisplayPort-0"; \
+	fi
+
+#button11
+#	source="$(pactl info | grep "Default Source" | awk '\{print $3\}')"; \
+#	pactl set-source-mute "$source" 0
+#
+#@button11
+#	source="$(pactl info | grep "Default Source" | awk '\{print $3\}')"; \
+#	pactl set-source-mute "$source" 1

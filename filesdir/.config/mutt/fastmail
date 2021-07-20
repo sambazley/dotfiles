@@ -1,0 +1,8 @@
+unmailboxes *
+set from      = sambazley@fastmail.com
+set folder    = ~/mail/fastmail
+set spoolfile = +INBOX
+set record    = +Sent
+set trash     = +Trash
+mailboxes     =INBOX =Archive =Drafts =Sent =Spam =Trash
+exec first-entry

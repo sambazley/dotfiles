@@ -1,0 +1,9 @@
+.config/blockbar/scripts/data
+.config/blockbar/scripts/bspwm-desktops
+.config/blockbar/scripts/bspwm-windows
+.config/blockbar/scripts/bspc.o
+.config/blockbar/scripts/colors.h
+.imgcol/generated
+.config/ncmpcpp/error.log
+.config/systemd/user/default.target.wants
+.config/systemd/user/timers.target.wants

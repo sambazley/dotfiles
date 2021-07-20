@@ -1,0 +1,8 @@
+USERNAME_field='Username'
+URL_field='URL'
+default_autotype='Username :tab pass'
+EDITOR='gvim -f'
+
+_pwgen() {
+    pwgen "$@"
+}
