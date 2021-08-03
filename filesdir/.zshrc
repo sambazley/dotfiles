@@ -36,8 +36,8 @@ setopt correct
 
 autoload -Uz colors && colors
 
-autoload zkbd
-autoload history-search-end
+autoload -Uz zkbd
+autoload -Uz history-search-end
 
 zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
@@ -74,58 +74,45 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=240"
 ZSH_HIGHLIGHT_STYLES[command]="fg=white,bold"
 ZSH_HIGHLIGHT_STYLES[alias]="fg=white,bold"
 
-local STATUS_FIFO="/tmp/zsh_git_status"
-git_get_status() {
-    local STATUS="$(git status --porcelain)"
-
-    (
-    echo -n "\uf067"
-    echo -n " $(echo "$STATUS" | grep '^[A-Z]' | wc -l) " #Staged
-    echo -n "\uf00e"
-    echo -n " $(echo "$STATUS" | grep '^\s' | wc -l) " #Unstaged
-    echo -n "\uf128"
-    echo -n " $(echo "$STATUS" | grep -E '^\?\?' | wc -l) " #Untracked
-    ) >> "$STATUS_FIFO"
-}
-
-gitstuff() {
-    [ ! -p "$STATUS_FIFO" ] && mkfifo "$STATUS_FIFO"
-    (git_get_status &)
-
-    echo -n "[ "
-
+_git_desc() {
     local BRANCH="$(git describe --all --always 2>/dev/null)"
 
     if [[ "$BRANCH" != "" ]]; then
+        echo -n "on "
         if [[ "$BRANCH" =~ "^heads/.*" ]]; then
-            echo -n "%{$fg_bold[green]%}$(echo $BRANCH | cut -c 7-)%{$reset_color%}"
+            echo -n "%{$fg_bold[green]%}\uf126 $(echo $BRANCH | cut -c 7-)%{$reset_color%}"
         else
             echo -n "%{$fg[green]%}$BRANCH%{$reset_color%}"
         fi
-        echo -n " | "
     fi
-
-    cat "$STATUS_FIFO"
-
-    echo -n "] "
 }
 
-function zle-line-init zle-keymap-select {
-    precmd
+_git_prompt_status() {
+    echo -n '[ '
+    echo -n "\uf067 $(git diff --staged --name-only | wc -l) "
+    echo -n "\uf0ad $(git diff --name-only | wc -l) "
+    echo -n "\uf128 $(git ls-files --others --exclude-standard | wc -l) "
+    echo -n ']'
+}
 
+setopt prompt_subst
+
+PROMPT='%{$fg_bold[red]%}%n%{$reset_color%}@%{$fg_bold[blue]%}%m %{$reset_color%}in %{$fg_bold[yellow]%}%3~%{$reset_color%}$GIT_DESC'$'\n'' %B$%b '
+RPROMPT='$VIM$GIT_STATUS%(?.. [%{$fg_bold[red]%}%?%{$reset_color%}])'
+
+function zle-line-init zle-keymap-select {
+    VIM="${${KEYMAP/vicmd/n}/(main|viins)/i}"
     zle reset-prompt
 }
 
 precmd() {
-    PROMPT="[%{$fg_bold[red]%}%n%{$reset_color%}@%{$fg_bold[blue]%}%m %{$fg[green]%}%1~%{$reset_color%}]%{$fg_bold[magenta]%}$%{$reset_color%} "
-
-    local VIM="${${KEYMAP/vicmd/N}/(main|viins)/I}"
-
-    local ERR="%{$fg_bold[red]%}%?%{$reset_color%}"
-    local S=":)"
-    local F="[$ERR] :("
-    local SF="%(?.$S.$F)"
-    RPROMPT="$VIM $([[ "$(git rev-parse --is-inside-work-tree 2>/dev/null)" == "true" ]] && gitstuff)$SF"
+    if [[ "$(git rev-parse --is-inside-work-tree 2>/dev/null)" == "true" ]]; then
+        GIT_DESC=" $(_git_desc)"
+        GIT_STATUS=" $(_git_prompt_status)"
+    else
+        GIT=""
+        GIT_RIGHT=""
+    fi
 }
 
 zle -N zle-line-init

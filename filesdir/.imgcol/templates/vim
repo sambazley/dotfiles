@@ -22,7 +22,7 @@ hi ModeMsg term=bold cterm=bold gui=bold
 hi LineNr term=underline ctermfg=11 guifg=<% color11 %>
 "LineNrAbove
 "LineNrBelow
-hi CursorLineNr term=bold cterm=underline gui=underline ctermfg=11 guifg=<% color11 %>
+hi CursorLineNr term=bold cterm=bold gui=bold ctermfg=15 guifg=<% color15 %>
 hi Question term=standout ctermfg=121 guifg=#87ffaf
 hi StatusLine term=bold,reverse cterm=bold,reverse gui=bold,reverse
 hi StatusLineNC term=reverse cterm=reverse gui=reverse

@@ -36,6 +36,9 @@ set wildmenu
 set spell
 set spelllang=en_gb
 
+set cursorline
+set cursorlineopt=number
+
 set background=dark
 
 set fileencodings=utf-8,default,latin1
@@ -241,7 +244,7 @@ function! s:formatoptions()
     setlocal formatoptions-=o
 endfunction
 
-autocmd! FileType * call s:formatoptions()
+autocmd! BufNewFile,BufRead * call s:formatoptions()
 
 augroup Binary
   au!

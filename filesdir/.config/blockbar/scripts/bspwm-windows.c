@@ -116,7 +116,7 @@ static int get_nodes() {
         ad->atom = ad->reply->atom;
     }
 
-    char *node_ids = SEND("query", "-d", focused_desktop, "-n", ".!floating", "-N");
+    char *node_ids = SEND("query", "-d", focused_desktop, "-n", ".window.!floating", "-N");
     char *node_id = node_ids;
 
     if (!node_ids) {
