@@ -6,7 +6,14 @@ function rofi_menu {
     columns=${2-20}
     lines=${3-5}
 
-    width=$(( columns * 7 + 12 ))
+    if [[ "$NOCLICK" == "" ]]; then
+        click="MousePrimary"
+    else
+        nohighlight="element selected normal {text-color: @foreground;}\
+            element {cursor: default;}"
+    fi
+
+    width=$(( columns * 8 + 12 ))
 
     output_width="$(xrandr | grep "^$BAR_OUTPUT connected" | sed -E 's/^.*\s([0-9]+)x.*/\1/')"
     output_x="$(xrandr | grep "^$BAR_OUTPUT connected" | sed -E 's/^.*\+([0-9]+)\+.*/\1/')"
@@ -22,11 +29,6 @@ function rofi_menu {
 
     shift 3
 
-#    rofi -modi "$prompt:$FILE rofi" -show "$prompt" -font "Mono 9" \
-#        -width "$width" -lines "$lines" \
-#        -m primary -location 1 -yoffset 30 -xoffset $rofi_x "$@" \
-#        -theme-str '#listview {fixed-height: false;}'
-
     menu=$("$FILE" rofi)
 
     while :; do
@@ -37,9 +39,12 @@ function rofi_menu {
         menu=$(echo "$menu" | sed 's/<%selected%>//g')
 
         n=$(echo "$menu" | rofi -dmenu -i -format i -p "$prompt" \
-            -font "Mono 9" -width "$width" -lines "$lines" \
-            -m primary -location 1 -yoffset 30 -xoffset "$rofi_x" "$@" \
-            -selected-row "$row" -theme-str '#listview {fixed-height: false;}')
+            -me-select-entry '' -me-accept-entry "$click" \
+            -font "Mono 9" -m primary -location 1 -yoffset 30 \
+            -xoffset "$rofi_x" "$@" -selected-row "$row" -theme-str "\
+            window {width: ${width}px;} $nohighlight \
+            listview {lines: ${lines}; fixed-height: false;}\
+            entry {enabled: false;} textbox-prompt-colon {enabled: false;}")
 
         [[ "$n" == "" ]] && break
 

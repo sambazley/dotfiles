@@ -5,7 +5,7 @@ hyper + Return
 	alacritty --class floating
 
 super + d
-	rofi -show-icons -combi-modi drun,run -show combi -modi combi,run -m -1
+	rofi -show-icons -combi-modi drun,run -show combi -modi combi,run -m -1 -drun-match-fields name,exec,generic
 
 hyper + d
 	~/.config/rofi/windowlist.sh
@@ -150,6 +150,12 @@ super + XF86Sleep
 	else \
 		sethz DisplayPort-1 "--right-of DisplayPort-0"; \
 	fi
+
+XF86MonBrightnessUp
+	xbacklight -inc 10 -time 100 -fps 30
+
+XF86MonBrightnessDown
+	xbacklight -dec 10 -time 100 -fps 30
 
 #button11
 #	source="$(pactl info | grep "Default Source" | awk '\{print $3\}')"; \

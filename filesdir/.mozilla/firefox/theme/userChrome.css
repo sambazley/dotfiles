@@ -1,4 +1,4 @@
-@import url('file:///home/user/.imgcol/generated/colors.css');
+@import url('file:///home/sam/.imgcol/generated/colors.css');
 
 :root {
     --toolbar-bgcolor: var(--color0) !important;
@@ -77,7 +77,15 @@ findbar {
 }
 
 #new-tab-button {
-    list-style-image: url("chrome://browser/skin/zoom-in.svg") !important;
+    list-style-image: none !important;
+}
+
+#new-tab-button::after {
+    content: "+";
+    position: absolute;
+    left: 11px;
+    top: -5px;
+    font-size: 32px;
 }
 
 #back-button .toolbarbutton-icon,

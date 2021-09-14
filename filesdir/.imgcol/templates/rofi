@@ -1,88 +1,77 @@
 ~/.config/rofi/config.rasi
 configuration {
-    lines: 7;
-    width: -55;
-    font: "Mono 10";
-    terminal: "termite";
-    scroll-method: 1;
-    hide-scrollbar: false;
+	font: "Mono 10";
+	terminal: "alacritty";
+	scroll-method: 1;
 
-    kb-remove-to-eol: "";
-    kb-accept-entry: "Return,KP_Enter";
-    kb-row-down: "Down,Control+j";
-    kb-row-up: "Up,Control+k,ISO_Left_Tab";
+	kb-remove-to-eol: "";
+	kb-accept-entry: "Return,KP_Enter";
+	kb-row-down: "Down,Control+j";
+	kb-row-up: "Up,Control+k,ISO_Left_Tab";
 }
 
 * {
-    background-color: <% color0 %>;
-    spacing: 4;
-    foreground: <% color7 %>;
-    selected-foreground: <% focusedcolor %>;
-    border-color: <% bordercolor %>;
+	background-color: <% color0 %>;
+	spacing: 4;
+	foreground: <% color7 %>;
+	selected-foreground: <% focusedcolor %>;
+	border-color: <% bordercolor %>;
 
-    urgent: <% color2 %>;
+	urgent: <% color2 %>;
 }
 
-#mainbox {
-    padding: 10px;
-    border: 2px;
-    border-color: @border-color;
+window {
+	width: 500px;
+	padding: 0px;
+	border: 0px;
 }
 
-#inputbar {
-    children: [prompt,textbox-prompt-colon,entry,case-indicator];
+mainbox {
+	padding: 10px;
+	border: 2px;
+	border-color: @border-color;
 }
 
 case-indicator {
-    text-color: @foreground;
+	text-color: @foreground;
 }
 
-#inputbar {
-    spacing: 0;
-    padding: 1px;
+inputbar {
+	spacing: 0px;
+	padding: 1px;
+	children: [prompt,textbox-prompt-colon,entry,case-indicator];
 }
 
-#textbox-prompt-colon {
-    expand: false;
-    str: ":";
-    margin: 0px 0.3em 0em 0em ;
-    text-color: @foreground;
+textbox-prompt-colon {
+	expand: false;
+	str: ":";
+	margin: 0px 0.3em 0em 0em ;
+	text-color: @foreground;
 }
 
-#prompt {
-    spacing: 0;
-    text-color: @foreground;
+listview {
+	scrollbar: false;
+	lines: 8;
+	cycle: false;
+	border: 0px;
 }
 
-#entry {
-    spacing: 0;
-    text-color: @foreground;
+element normal normal, element alternate normal {
+	text-color: @foreground;
+	background-color: inherit;
 }
 
-#listview {
-    cycle: false;
+element selected normal {
+	text-color: @selected-foreground;
+	background-color: inherit;
 }
 
-#element {
-    text-color: @foreground;
+textbox {
+	text-color: @foreground;
+	font: "Mono 9";
+	horizontal-align: 0.5;
 }
 
-#element.selected.normal {
-    text-color: @selected-foreground;
-}
-
-#textbox {
-    text-color: @foreground;
-    font: "Mono 9";
-    horizontal-align: 0.5;
-}
-
-#message {
-    padding: 5px;
-}
-
-#scrollbar {
-    width: 3px;
-    handle-width: 5px;
-    background-color: @foreground;
+message {
+	padding: 5px;
 }

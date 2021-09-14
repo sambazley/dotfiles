@@ -110,8 +110,8 @@ precmd() {
         GIT_DESC=" $(_git_desc)"
         GIT_STATUS=" $(_git_prompt_status)"
     else
-        GIT=""
-        GIT_RIGHT=""
+        GIT_DESC=""
+        GIT_STATUS=""
     fi
 }
 

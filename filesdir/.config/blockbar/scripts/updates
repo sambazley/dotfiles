@@ -26,7 +26,7 @@ if [ "$BLOCK_BUTTON" == "1" ]; then
     exit
 elif [ "$BLOCK_BUTTON" == "3" ]; then
     . "$(dirname $0)/rofi.sh"
-    rofi_menu "Updates" 25 $(( NUM<30?NUM:25 ))
+    NOCLICK=1 rofi_menu "Updates" 25 $(( NUM<30?NUM:25 ))
 fi
 
 if [[ "$NUM" > "0" ]]; then

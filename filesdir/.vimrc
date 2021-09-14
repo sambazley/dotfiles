@@ -1,5 +1,5 @@
 "line numbers
-set number
+set number relativenumber
 "indent 4 spaces, <BS> deletes 4 spaces
 set shiftwidth=8 smarttab
 "red line after 80th char
@@ -35,6 +35,8 @@ set wildmenu
 "enable spellcheck
 set spell
 set spelllang=en_gb
+"set terminal title
+set title
 
 set cursorline
 set cursorlineopt=number
@@ -177,9 +179,14 @@ let g:lsp_diagnostics_echo_cursor = 1
 let g:lsp_text_edit_enabled = 0
 let g:asyncomplete_auto_popup = 0
 
-let g:indentLine_setColors = 0
-let g:indentLine_char = '⎸'
-let g:indentLine_fileTypeExclude = ['json']
+if &term == 'xterm-color'
+  let g:indentLine_char = '|'
+  let g:lsp_auto_enable = 0
+else
+  let g:indentLine_setColors = 0
+  let g:indentLine_char = '⎸'
+  let g:indentLine_fileTypeExclude = ['json']
+endif
 
 function! s:check_back_space() abort
     let col = col('.') - 1
@@ -231,6 +238,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'romainl/vim-cool'
     Plug 's3rvac/AutoFenc'
     Plug 'godlygeek/tabular'
+    Plug 'junegunn/fzf.vim'
 call plug#end()
 
 nmap <LeftMouse> <nop>

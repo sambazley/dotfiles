@@ -89,7 +89,6 @@ elif [[ "$HOST" == "SamLaptop" ]]; then
     fork light-locker
 fi
 
-fork thunar --daemon
 fork sudo firewall-applet
 
 ~/blockbar/blockbar &
