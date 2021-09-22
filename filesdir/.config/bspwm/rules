@@ -42,6 +42,10 @@ if [[ "$class" == "firefox" ]] && [[ "$title" == "Picture-in-Picture" ]]; then
     echo "sticky=on"
 fi
 
+if [[ "$class" == "anbox" ]]; then
+    echo "state=floating"
+fi
+
 case "$(xprop -id "$wid" _NET_WM_WINDOW_TYPE)" in
     *_NET_WM_WINDOW_TYPE_UTILITY* )
         echo "layer=above"

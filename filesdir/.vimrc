@@ -200,8 +200,6 @@ inoremap <silent><expr> <TAB>
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 inoremap <expr><cr>    pumvisible() ? "\<C-y>" : "\<cr>"
 
-autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
-
 if executable('clangd')
     au User lsp_setup call lsp#register_server({
                 \ 'name': 'clangd',

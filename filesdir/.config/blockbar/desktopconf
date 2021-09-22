@@ -8,24 +8,24 @@
     "traybar": "DisplayPort-0",
     "modules": [
         {
-            "path": "/home/user/blockbar/modules/background/background.so",
+            "path": "/home/sam/blockbar/modules/background/background.so",
             "settings": {
                 "color": "#141928ff",
                 "bordercolor": "#0e111cff"
             }
         },
         {
-            "path": "/home/user/blockbar/modules/subblocks/subblocks.so",
+            "path": "/home/sam/blockbar/modules/subblocks/subblocks.so",
             "settings": {
             }
         },
         {
-            "path": "/home/user/blockbar/modules/text/text.so",
+            "path": "/home/sam/blockbar/modules/text/text.so",
             "settings": {
             }
         },
         {
-            "path": "/home/user/blockbar/modules/vbar/vbar.so",
+            "path": "/home/sam/blockbar/modules/vbar/vbar.so",
             "settings": {
                 "barcolor": "#3c4b78ff",
                 "width": 4
@@ -52,7 +52,7 @@
         },
         {
             "module": "subblocks",
-            "exec": "/home/user/.config/blockbar/scripts/sxhkd",
+            "exec": "/home/sam/.config/blockbar/scripts/sxhkd",
             "nodiv": true
         }
     ],
