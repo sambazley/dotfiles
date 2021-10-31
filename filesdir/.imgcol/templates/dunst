@@ -14,7 +14,10 @@ ignore_newline=no
 stack_duplicates=yes
 hide_duplicates_count=true
 
-geometry="400x100-15-15"
+width=(0,400)
+height=(0,100)
+origin=bottom-right
+offset=15x15
 shrink=yes
 transparency=5
 

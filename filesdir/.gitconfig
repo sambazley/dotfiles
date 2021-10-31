@@ -9,3 +9,7 @@
 	abbrev = 12
 [pretty]
 	fixes = Fixes: %h (\"%s\")
+[mergetool]
+	prompt = false
+[merge]
+	tool = vimdiff

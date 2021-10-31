@@ -91,6 +91,8 @@ fi
 
 fork sudo firewall-applet
 
+systemctl start --user dunst
+
 ~/blockbar/blockbar &
 sleep 0.5
 picom --config ~/.config/picom/config &
@@ -121,7 +123,7 @@ pactl subscribe | waiter 100 | while read line; do
     updateBlock "volume"
 done &
 
-stdbuf -oL xkbevd 2>&1 | grep --line-buffered "XkbNewKeyboard" | while read line; do
+#stdbuf -oL xkbevd 2>&1 | grep --line-buffered "XkbNewKeyboard" | while read line; do
 #    device="$(echo "$line" | sed -E 's/.*device ([0-9]+).*/\1/g')"
 #
 #    touch /tmp/kbdlockpre
@@ -140,7 +142,7 @@ stdbuf -oL xkbevd 2>&1 | grep --line-buffered "XkbNewKeyboard" | while read line
 #
 #    rm /tmp/kbdlockpre
 #
-done &
+#done &
 #rm -f /tmp/kbdlock
 #rm -f /tmp/kbdlockpre
 
