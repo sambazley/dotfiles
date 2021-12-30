@@ -60,6 +60,8 @@ elif [[ "$BLOCK_BUTTON" == "3" ]]; then
     . "$(dirname "$0")/rofi.sh"
     rofi_menu "Players" 30 10
     PLAYER=$(cat "$DATADIR/player")
+elif [[ "$BLOCK_BUTTON" == "pause" ]]; then
+    pctl pause -p "$PLAYER"
 fi
 
 STATUS=$(pctl status -p "$PLAYER")

@@ -197,3 +197,12 @@ findbar {
     border-image-slice: 100%;
     border-image-slice: 1;
 }
+
+#main-window[privatebrowsingmode="temporary"] #TabsToolbar {
+    background-color: var(--toolbar-bgcolor) !important;
+    -moz-appearance: none !important;
+}
+
+#main-window[privatebrowsingmode="temporary"] .tab-background:not([selected]) {
+    background-color: var(--toolbar-bgcolor) !important;
+}

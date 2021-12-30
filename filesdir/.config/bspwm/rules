@@ -38,10 +38,6 @@ if [[ "$class" == "Zathura" ]]; then
     echo "state=tiled"
 fi
 
-if [[ "$class" == "firefox" ]] && [[ "$title" == "Picture-in-Picture" ]]; then
-    echo "sticky=on"
-fi
-
 if [[ "$class" == "anbox" ]]; then
     echo "state=floating"
 fi

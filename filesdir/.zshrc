@@ -118,4 +118,8 @@ precmd() {
 zle -N zle-line-init
 zle -N zle-keymap-select
 
+if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+    export DBUS_SESSION_BUS_ADDRESS=/dev/null
+fi
+
 true

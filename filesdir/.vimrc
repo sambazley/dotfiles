@@ -47,11 +47,12 @@ set fileencodings=utf-8,default,latin1
 set fileencoding=utf-8
 
 function! StatusBuffers()
-    let statusline = " "
+    let statusline = ""
 
     let width = winwidth(0) - 3
 
     let buffers = []
+    let ndx = 0
 
     for b in split(execute("ls"), "\n")
         let buf = {}
@@ -59,14 +60,17 @@ function! StatusBuffers()
         let buf.modified = split(b)[2] == "+"
         let buf.name = split(b, "\"")[1]
         let buf.line = split(b)[-1]
+        let buf.done = 0
 
         if split(b)[1][0] == "%"
             let width -= len(buf.name) + len(buf.line)*2 + (buf.modified ? 3 : 2)
+            let ndx = 1
             continue
         endif
 
-        if buf.modified
-            call insert(buffers, buf)
+        if ndx
+            call insert(buffers, buf, ndx - 1)
+            let ndx += 1
         else
             call add(buffers, buf)
         endif
@@ -76,11 +80,25 @@ function! StatusBuffers()
         let width -= len(b.name . b.line) + (b.modified ? 3 : 2)
 
         if width <= 3
-            let statusline .= "..."
+            let w = 0
+            for b in buffers
+                if !b.done && b.modified
+                    let statusline .= "%#SLModified#***%#StatusLineNC#"
+                    let w = 1
+                    break
+                endif
+            endfor
+
+            if !w
+                let statusline .= "..."
+            endif
+
             break
         endif
 
-        let statusline .= b.name . ":" . b.line . (b.modified ? "*" : "") . " "
+        let b.done = 1
+
+        let statusline .= b.name . ":" . b.line . (b.modified ? "%#SLModified#*%#StatusLineNC#" : "") . " "
     endfor
 
     return statusline
@@ -109,7 +127,7 @@ set statusline+=%{&readonly?\"[READ\ ONLY]\":\"\"}
 set statusline+=%#slnorm#
 set statusline+=%{&readonly?\"\ \":\"\ \"}
 "show buffers
-set statusline+=%#StatusLineNC#%{StatusBuffers()}
+set statusline+=%#StatusLineNC#%{%StatusBuffers()%}
 "align right
 set statusline+=%=
 "line:column
@@ -180,12 +198,12 @@ let g:lsp_text_edit_enabled = 0
 let g:asyncomplete_auto_popup = 0
 
 if &term == 'xterm-color'
-  let g:indentLine_char = '|'
-  let g:lsp_auto_enable = 0
+    let g:indentLine_char = '|'
+    let g:lsp_auto_enable = 0
 else
-  let g:indentLine_setColors = 0
-  let g:indentLine_char = '⎸'
-  let g:indentLine_fileTypeExclude = ['json']
+    let g:indentLine_setColors = 0
+    let g:indentLine_char = '⎸'
+    let g:indentLine_fileTypeExclude = ['json']
 endif
 
 function! s:check_back_space() abort
@@ -253,12 +271,12 @@ endfunction
 autocmd! BufNewFile,BufRead * call s:formatoptions()
 
 augroup Binary
-  au!
-  au BufReadPre  *.bin let &bin=1
-  au BufReadPost *.bin if &bin | %!xxd
-  au BufReadPost *.bin set ft=xxd | endif
-  au BufWritePre *.bin if &bin | %!xxd -r
-  au BufWritePre *.bin endif
-  au BufWritePost *.bin if &bin | %!xxd
-  au BufWritePost *.bin set nomod | endif
+    au!
+    au BufReadPre  *.bin let &bin=1
+    au BufReadPost *.bin if &bin | %!xxd
+    au BufReadPost *.bin set ft=xxd | endif
+    au BufWritePre *.bin if &bin | %!xxd -r
+    au BufWritePre *.bin endif
+    au BufWritePost *.bin if &bin | %!xxd
+    au BufWritePost *.bin set nomod | endif
 augroup END

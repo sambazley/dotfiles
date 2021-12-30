@@ -98,6 +98,10 @@ Print
 	BLOCK_BUTTON=1 ~/.config/blockbar/scripts/mpris; \
 	bbc exec "$(bbc list | grep mpris | awk '\{print $1\}')"
 
+XF86AudioPause
+	BLOCK_BUTTON=pause ~/.config/blockbar/scripts/mpris; \
+	bbc exec "$(bbc list | grep mpris | awk '\{print $1\}')"
+
 XF86AudioNext
 	BLOCK_BUTTON=5 ~/.config/blockbar/scripts/mpris; \
 	bbc exec "$(bbc list | grep mpris | awk '\{print $1\}')"
