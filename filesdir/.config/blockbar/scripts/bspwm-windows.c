@@ -229,7 +229,7 @@ int main(int argc, char *argv[]) {
     }
 
     if (block_button) {
-        if (block_button == 1) {
+        if (block_button == 1 || block_button == -1) {
             focused_node = &nodes[subblock];
         } else if (block_button == 4) {
             if (focused_node == nodes) {

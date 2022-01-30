@@ -165,7 +165,7 @@ int main(int argc, char *argv[]) {
 
     int blk_count = 0;
 
-    if (block_button == 1) {
+    if (block_button == 1 || block_button == -1) {
         for (int i = 0; i < desktop_count; i++) {
             struct Desktop *desktop = &desktops[i];
             if (!desktop->occupied && desktop != focused) {
