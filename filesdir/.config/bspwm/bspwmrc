@@ -102,25 +102,31 @@ xdo above -t "$(xdo id -N Bspwm -n root | sort | head -n 1)" $(xdo id -n blockba
 tail -f ~/.config/xob/fifo | xob &
 
 function updateBlock {
-    ID=$(bbc list | grep "$1" | awk '{print $1}')
+    ID=$(bbc list | grep "$1$" | awk '{print $1}')
     bbc exec $ID
 }
 
 bspc subscribe | while read line; do
-    updateBlock "bspwm-windows" &
-    updateBlock "bspwm-desktops" &
+    updateBlock 'bspwm-windows' &
+    updateBlock 'bspwm-desktops' &
 done &
 
 dbus-monitor --system --profile "sender='org.bluez'" 2>/dev/null | waiter 100 | while read line; do
-    updateBlock "bluetooth"
+    updateBlock 'bluetooth'
 done &
 
 dbus-monitor --session "path=/org/mpris/MediaPlayer2,member=PropertiesChanged" | waiter 50 | while read line; do
-    updateBlock "mpris"
+    updateBlock 'mpris'
 done &
 
 pactl subscribe | waiter 100 | while read line; do
-    updateBlock "volume"
+    updateBlock 'volume'
+done &
+
+ip monitor | waiter 100 | while read line; do
+    sleep 0.1
+    updateBlock 'ip'
+    updateBlock 'vpn'
 done &
 
 #stdbuf -oL xkbevd 2>&1 | grep --line-buffered "XkbNewKeyboard" | while read line; do

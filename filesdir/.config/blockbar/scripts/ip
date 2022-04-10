@@ -4,7 +4,6 @@ OUT=$(hostname -i)
 if [ -n "$OUT" ]; then
     echo $OUT
     echo $OUT | awk '{print $1}'
-    echo \#00FF00
 else
     echo Not Connected
     echo Not Connected

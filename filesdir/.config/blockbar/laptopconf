@@ -85,8 +85,10 @@
             "interval": 5000
         },
         {
-            "exec": "~/.config/blockbar/scripts/ip",
-            "interval": 30000
+            "exec": "~/.config/blockbar/scripts/ip"
+        },
+        {
+            "exec": "~/.config/blockbar/scripts/vpn"
         },
         {
             "exec": "~/.config/blockbar/scripts/systemdmon",

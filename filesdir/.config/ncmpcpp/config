@@ -405,7 +405,7 @@ media_library_primary_tag = album_artist
 #
 #cyclic_scrolling = no
 #
-lyrics_fetchers = justsomelyrics, jahlyrics, plyrics, tekstowo, zeneszoveg, internet, metrolyrics, sing365
+lyrics_fetchers = azlyrics, genius, musixmatch, sing365, metrolyrics, justsomelyrics, jahlyrics, plyrics, tekstowo, zeneszoveg, internet
 #
 follow_now_playing_lyrics = yes
 #

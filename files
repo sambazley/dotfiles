@@ -32,5 +32,4 @@ mail/mu-hook.sh
 .profile
 .vimrc
 .Xmodmap
-.Xresources
 .zshrc

@@ -10,8 +10,6 @@ syntax enable
 set guifont=Source\ Code\ Pro\ 9
 "enable mouse input (scrolling)
 set mouse=a
-noremap <Up> <C-y>
-noremap <Down> <C-e>
 "disable replace on <Insert>
 imap <Insert> <Nop>
 "enabled search highlighting
@@ -141,15 +139,23 @@ else
 endif
 
 function! s:insert_license()
-    if filereadable("LICENSE")
-        read LICENSE
-        normal gg"_dd
-        normal G
-    elseif filereadable("../LICENSE")
-        read ../LICENSE
-        normal gg"_dd
-        normal G
-    endif
+    let done = 0
+    for f in ["boilerplate", "LICENSE"]
+        if done
+            break
+        endif
+
+        for p in ["", "../"]
+            let pf = p . f
+            echom pf
+            if filereadable(pf)
+                exec '0read' pf
+                norm G
+                let done = 1
+                break
+            endif
+        endfor
+    endfor
 endfunction
 autocmd! BufNewFile *.{c,h} call <SID>insert_license()
 
@@ -187,6 +193,8 @@ augroup vhdl
     autocmd BufNewFile *.vhdl call <SID>insert_vhdl()
 augroup END
 
+let g:vhdl_indent_genportmap = 0
+
 set signcolumn=no
 
 let g:lsp_peek_alignment = "top"
@@ -222,21 +230,21 @@ if executable('clangd')
     au User lsp_setup call lsp#register_server({
                 \ 'name': 'clangd',
                 \ 'cmd': {server_info->['clangd', '-background-index']},
-                \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
+                \ 'allowlist': ['c', 'cpp', 'objc', 'objcpp'],
                 \ })
 endif
 if executable('bash-language-server')
     au User lsp_setup call lsp#register_server({
                 \ 'name': 'bash-language-server',
                 \ 'cmd': {server_info->[&shell, &shellcmdflag, 'bash-language-server start']},
-                \ 'whitelist': ['sh'],
+                \ 'allowlist': ['sh'],
                 \ })
 endif
 if executable('vim-language-server')
     au User lsp_setup call lsp#register_server({
                 \ 'name': 'vim-language-server',
                 \ 'cmd': {server_info->[&shell, &shellcmdflag, 'vim-language-server --stdio']},
-                \ 'whitelist': ['vim', 'vimrc'],
+                \ 'allowlist': ['vim'],
                 \ })
 endif
 
