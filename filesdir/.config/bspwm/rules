@@ -42,6 +42,14 @@ if [[ "$class" == "anbox" ]]; then
     echo "state=floating"
 fi
 
+if [[ "$class" == "gnome-calculator" ]]; then
+    echo "state=floating"
+fi
+
+if [[ "$class" == "Gnome-system-monitor" ]]; then
+    echo "state=floating"
+fi
+
 case "$(xprop -id "$wid" _NET_WM_WINDOW_TYPE)" in
     *_NET_WM_WINDOW_TYPE_UTILITY* )
         echo "layer=above"

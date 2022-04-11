@@ -39,9 +39,6 @@ if [[ "$HOST" == "SamLinux" ]]; then
     bspc rule -a discord desktop='^2:^1'
 fi
 
-bspc rule -a "Gnome-calculator" state=floating
-bspc rule -a "Gnome-system-monitor" state=floating
-
 bspc config top_padding 32
 bspc config single_monocle false
 bspc config gapless_monocle false

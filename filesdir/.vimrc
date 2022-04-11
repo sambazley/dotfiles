@@ -248,7 +248,7 @@ if executable('vim-language-server')
                 \ })
 endif
 
-nnoremap g] :LspDefinition<CR>
+nnoremap gd :LspDefinition<CR>
 
 call plug#begin('~/.vim/plugged')
     Plug 'bronson/vim-trailing-whitespace'
@@ -257,12 +257,14 @@ call plug#begin('~/.vim/plugged')
     Plug 'prabirshrestha/asyncomplete.vim'
     Plug 'prabirshrestha/asyncomplete-lsp.vim'
     Plug 'tpope/vim-fugitive'
-    Plug 'yggdroot/indentline'
     Plug 'tpope/vim-sleuth'
+    Plug 'tpope/vim-speeddating'
+    Plug 'yggdroot/indentline'
     Plug 'romainl/vim-cool'
     Plug 's3rvac/AutoFenc'
     Plug 'godlygeek/tabular'
     Plug 'junegunn/fzf.vim'
+    Plug 'jceb/vim-orgmode'
 call plug#end()
 
 nmap <LeftMouse> <nop>
