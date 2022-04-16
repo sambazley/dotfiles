@@ -265,6 +265,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'godlygeek/tabular'
     Plug 'junegunn/fzf.vim'
     Plug 'jceb/vim-orgmode'
+    Plug 'sambazley/vim-csveval'
 call plug#end()
 
 nmap <LeftMouse> <nop>

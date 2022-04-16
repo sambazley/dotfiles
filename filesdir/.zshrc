@@ -65,6 +65,7 @@ alias clipc="xclip -i -sel clipboard -f | xclip -i -sel primary"
 alias clipp="xclip -o -sel clipboard"
 alias ssh="TERM=xterm ssh"
 alias less="less -R"
+alias notes="vim ~/notes/\$(ls ~/notes | fzf)"
 
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
