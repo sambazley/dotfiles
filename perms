@@ -33,6 +33,8 @@
 755 ./.config/bspwm/rules
 755 ./.config/gtk-3.0
 644 ./.config/gtk-3.0/settings.ini
+755 ./.config/gtk-4.0
+644 ./.config/gtk-4.0/settings.ini
 755 ./.config/mpd
 644 ./.config/mpd/mpd.conf
 755 ./.config/mutt

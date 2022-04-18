@@ -9,6 +9,7 @@
 
 .config/picom/config
 .config/gtk-3.0/settings.ini
+.config/gtk-4.0/settings.ini
 .config/mpd
 .config/ncmpcpp
 .config/rofi-pass/config
