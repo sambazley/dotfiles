@@ -18,6 +18,10 @@
     --arrowpanel-menuitem-padding: 4px 8px !important;
 }
 
+#customization-palette-container {
+    color: black !important;
+}
+
 #PanelUI-button {
     border-inline-start: none !important;
 }

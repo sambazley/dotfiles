@@ -5,6 +5,7 @@
 
 .config/blockbar/desktopconf
 .config/blockbar/laptopconf
+.config/blockbar/tplinuxvmconf
 .config/blockbar/scripts
 
 .config/picom/config
@@ -32,5 +33,4 @@ mail/mu-hook.sh
 .imgcol
 .profile
 .vimrc
-.Xmodmap
 .zshrc

@@ -19,7 +19,7 @@ elif [[ "$class" == "update" ]]; then
 fi
 
 case "$instance" in
-    "mpterm" | "floating" | "update")
+    "mpterm" | "floating")
         echo "state=floating"
         ;;
 esac

@@ -13,7 +13,6 @@
 755 ./.config/blockbar/scripts/cpu_graph
 755 ./.config/blockbar/scripts/cpu_usage
 755 ./.config/blockbar/scripts/disk-usage
-755 ./.config/blockbar/scripts/i3-workspaces
 755 ./.config/blockbar/scripts/ip
 755 ./.config/blockbar/scripts/mail
 644 ./.config/blockbar/scripts/Makefile
@@ -21,6 +20,7 @@
 755 ./.config/blockbar/scripts/power
 755 ./.config/blockbar/scripts/rofi.sh
 644 ./.config/blockbar/scripts/sbtheme.h
+644 ./.config/blockbar/scripts/sway-i3-workspaces.c
 755 ./.config/blockbar/scripts/sxhkd
 755 ./.config/blockbar/scripts/systemdmon
 755 ./.config/blockbar/scripts/temp
@@ -28,6 +28,7 @@
 755 ./.config/blockbar/scripts/updates
 755 ./.config/blockbar/scripts/volume
 755 ./.config/blockbar/scripts/vpn
+644 ./.config/blockbar/tplinuxvmconf
 755 ./.config/bspwm
 755 ./.config/bspwm/bspwmrc
 755 ./.config/bspwm/rules
@@ -100,5 +101,4 @@
 644 ./.mozilla/firefox/theme/userChrome.css
 644 ./.profile
 644 ./.vimrc
-644 ./.Xmodmap
 644 ./.zshrc

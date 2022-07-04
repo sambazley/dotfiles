@@ -5,10 +5,8 @@
 [color]
 	ui = auto
 [core]
-	excludesfile = /home/user/.gitignore
+	excludesfile = /home/sam/.gitignore
 	abbrev = 12
-[pretty]
-	fixes = Fixes: %h (\"%s\")
 [mergetool]
 	prompt = false
 [merge]

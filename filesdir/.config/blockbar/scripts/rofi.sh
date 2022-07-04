@@ -1,4 +1,3 @@
-
 FILE="$0"
 
 function rofi_menu {
@@ -15,10 +14,23 @@ function rofi_menu {
 
     width=$(( columns * 8 + 12 ))
 
-    output_width="$(xrandr | grep "^$BAR_OUTPUT connected" | sed -E 's/^.*\s([0-9]+)x.*/\1/')"
-    output_x="$(xrandr | grep "^$BAR_OUTPUT connected" | sed -E 's/^.*\+([0-9]+)\+.*/\1/')"
+    if [[ "$SWAYSOCK" != "" ]]; then
+        ws="$(swaymsg -t get_outputs -r | jq -r ".[] | select(.name == \"$BAR_OUTPUT\").current_workspace")"
+        rect="$(swaymsg -t get_workspaces -r | jq ".[] | select(.name == \"$ws\").rect")"
+        output_width="$(jq '.width' <<< "$rect")"
+        output_x="$(jq '.x' <<< "$rect")"
+    else
+        output_width="$(xrandr | grep "^$BAR_OUTPUT connected" | sed -E 's/^.*\s([0-9]+)x.*/\1/')"
+        output_x="$(xrandr | grep "^$BAR_OUTPUT connected" | sed -E 's/^.*\+([0-9]+)\+.*/\1/')"
+    fi
 
-    padding="$(bspc config window_gap)"
+    if [[ "$XDG_SESSION_DESKTOP" == "bspwm" ]]; then
+        padding="$(bspc config window_gap)"
+    elif [[ "$SWAYSOCK" != "" ]]; then
+        padding=0
+    else
+        padding=10
+    fi
 
     rofi_x_min=$(( output_x + padding ))
     rofi_x_max=$(( output_x + output_width - width - padding ))

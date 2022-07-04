@@ -266,11 +266,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'junegunn/fzf.vim'
     Plug 'jceb/vim-orgmode'
     Plug 'sambazley/vim-csveval'
+    Plug 'joom/latex-unicoder.vim'
 call plug#end()
-
-nmap <LeftMouse> <nop>
-imap <LeftMouse> <nop>
-vmap <LeftMouse> <nop>
 
 set textwidth=80
 

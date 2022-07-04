@@ -34,9 +34,9 @@ hi WarningMsg term=standout ctermfg=224 guifg=#ffd7d7
 hi WildMenu term=standout ctermfg=0 guifg=<% color0 %> ctermbg=11 guibg=<% color11 %>
 hi Folded term=standout ctermfg=14 guifg=<% color14 %> ctermbg=242 guibg=#6c6c6c
 hi FoldColumn term=standout ctermfg=14 guifg=<% color14 %> ctermbg=242 guibg=#6c6c6c
-hi DiffAdd term=bold ctermbg=4 guibg=<% color4 %>
-hi DiffChange term=bold ctermbg=5 guibg=<% color5 %>
-hi DiffDelete term=bold ctermfg=12 guifg=<% color12 %> ctermbg=6 guibg=<% color6 %>
+hi DiffAdd term=bold ctermbg=4 guibg=#274627
+hi DiffChange term=bold ctermbg=5 guibg=#274346
+hi DiffDelete term=bold ctermfg=12 guifg=<% color12 %> ctermbg=6 guibg=#280d0d
 hi DiffText term=reverse cterm=bold gui=bold ctermbg=9 guibg=<% color9 %>
 hi SignColumn term=standout ctermfg=14 guifg=<% color14 %> ctermbg=242 guibg=#6c6c6c
 hi Conceal ctermfg=239 guifg=#4e4e4e guibg=bg

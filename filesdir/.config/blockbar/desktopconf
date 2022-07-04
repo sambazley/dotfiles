@@ -30,6 +30,13 @@
                 "barcolor": "#3c4b78ff",
                 "width": 4
             }
+        },
+        {
+            "path": "/home/sam/blockbar/modules/constwidth/constwidth.so",
+            "settings": {
+                "barcolor": "#3c4b78ff",
+                "width": 4
+            }
         }
     ],
     "left": [

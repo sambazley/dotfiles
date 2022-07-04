@@ -50,7 +50,7 @@ super + shift + {k,j,h,l}
 super + shift + {Up,Down,Left,Right}
 	bspc node --presel-dir \~{north,south,west,east}
 
-super + mod1 + {Left,Right}
+super + alt + {Left,Right}
 	BAR_OUTPUT="$(bspc query -M -m focused --names)" BLOCK_BUTTON={4,5} ~/.config/blockbar/scripts/bspwm-desktops
 
 super + ctrl + {Left,Right}
@@ -68,6 +68,7 @@ super + r : {Up,Down,Left,Right}
 	else \
 		bspc node -z bottom_right $d; \
 	fi
+
 
 super + m : {k,j,h,l}
 super + m : {Up,Down,Left,Right}
@@ -160,11 +161,3 @@ XF86MonBrightnessUp
 
 XF86MonBrightnessDown
 	xbacklight -dec 10 -time 100 -fps 30
-
-#button11
-#	source="$(pactl info | grep "Default Source" | awk '\{print $3\}')"; \
-#	pactl set-source-mute "$source" 0
-#
-#@button11
-#	source="$(pactl info | grep "Default Source" | awk '\{print $3\}')"; \
-#	pactl set-source-mute "$source" 1

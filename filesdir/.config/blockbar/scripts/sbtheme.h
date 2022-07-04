@@ -14,7 +14,7 @@ struct Property {
     PROPERTY(borderwidth, 1)
     PROPERTY(bordercolor, "#030d17")
     PROPERTY(bgrad, 2)
-#ifdef bspwm_desktops
+#if defined BSPWM_DESKTOPS || defined SWAY_WORKSPACES
     PROPERTY(bgwidth, 27)
 #endif
 };

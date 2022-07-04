@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+if [[ "$XDG_SESSION_DESKTOP" != "bspwm" ]]; then
+    exit
+fi
+
 set -e
 
 bspc config active_border_color "$bordercolor"

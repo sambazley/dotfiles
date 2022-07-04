@@ -31,6 +31,8 @@ if [[ "$HOST" == "SamLinux" ]]; then
     bspc monitor DisplayPort-1 -d {1..9} 0
 elif [[ "$HOST" == "SamLaptop" ]]; then
     bspc monitor eDP -d {1..9} 0
+elif [[ "$HOST" == "TPLinuxVM" ]]; then
+    bspc monitor Virtual1 -d {1..9} 0
 fi
 
 bspc rule -r "*"
@@ -59,25 +61,15 @@ bspc config focused_border_color "$focusedcolor"
 bspc config normal_border_color "$bordercolor"
 bspc config presel_feedback_color "$urgentcolor"
 
-SXHKD_FIFO="/tmp/sxhkd.fifo"
+setxkbmap gb basic caps:hyper
+
+export SXHKD_SHELL="/usr/bin/bash"
+export SXHKD_FIFO="/tmp/sxhkd.fifo"
 if [[ ! -f "$SXHKD_FIFO" ]]; then
     mkfifo "$SXHKD_FIFO"
 fi
 
-function setup_kb {
-    pkill sxhkd
-
-    #if [[ "$(setxkbmap -query | grep layout: | awk '{print $2}')" != "gb" ]]; then
-        xsetroot -cursor_name watch && \
-        setxkbmap -layout gb -option && \
-        xmodmap ~/.Xmodmap && \
-        xsetroot -cursor_name left_ptr
-    #fi
-
-    SXHKD_SHELL="/usr/bin/sh" sxhkd -s "$SXHKD_FIFO" &
-}
-
-setup_kb
+fork sxhkd -s "$SXHKD_FIFO"
 
 if [[ "$HOST" == "SamLinux" ]]; then
     fork /usr/lib/kdeconnectd
@@ -99,7 +91,7 @@ xdo above -t "$(xdo id -N Bspwm -n root | sort | head -n 1)" $(xdo id -n blockba
 tail -f ~/.config/xob/fifo | xob &
 
 function updateBlock {
-    ID=$(bbc list | grep "$1$" | awk '{print $1}')
+    ID=$(bbc list | grep "$1" | awk '{print $1}')
     bbc exec $ID
 }
 
@@ -125,29 +117,6 @@ ip monitor | waiter 100 | while read line; do
     updateBlock 'ip'
     updateBlock 'vpn'
 done &
-
-#stdbuf -oL xkbevd 2>&1 | grep --line-buffered "XkbNewKeyboard" | while read line; do
-#    device="$(echo "$line" | sed -E 's/.*device ([0-9]+).*/\1/g')"
-#
-#    touch /tmp/kbdlockpre
-#
-#    if (xinput | grep "id=$device\s" | grep -q "\[master keyboard"); then
-#        if [[ ! -f "/tmp/kbdlock" ]]; then
-#            touch /tmp/kbdlock
-#
-#setup_kb
-#
-#            sleep 1
-#
-#            rm /tmp/kbdlock
-#        fi
-#    fi
-#
-#    rm /tmp/kbdlockpre
-#
-#done &
-#rm -f /tmp/kbdlock
-#rm -f /tmp/kbdlockpre
 
 while :; do
     if read -r line < "$SXHKD_FIFO"; then

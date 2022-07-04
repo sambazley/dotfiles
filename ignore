@@ -1,6 +1,7 @@
 .config/blockbar/scripts/data
 .config/blockbar/scripts/bspwm-desktops
 .config/blockbar/scripts/bspwm-windows
+.config/blockbar/scripts/sway-i3-workspaces
 .config/blockbar/scripts/bspc.o
 .config/blockbar/scripts/colors.h
 .imgcol/generated
