@@ -202,11 +202,20 @@ findbar {
     border-image-slice: 1;
 }
 
+#TabsToolbar {
+    display: none;
+}
+
 #main-window[privatebrowsingmode="temporary"] #TabsToolbar {
+    display: -moz-box !important;
     background-color: var(--toolbar-bgcolor) !important;
     -moz-appearance: none !important;
 }
 
 #main-window[privatebrowsingmode="temporary"] .tab-background:not([selected]) {
     background-color: var(--toolbar-bgcolor) !important;
+}
+
+#private-browsing-indicator-with-label label {
+    display: none;
 }
