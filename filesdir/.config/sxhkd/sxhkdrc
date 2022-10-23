@@ -10,6 +10,9 @@ super + d
 hyper + d
 	~/.config/rofi/windowlist.sh
 
+super + z
+	dunstctl context
+
 super + p
 	rofi-pass
 
