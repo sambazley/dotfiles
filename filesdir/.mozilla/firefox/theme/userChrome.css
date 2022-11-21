@@ -104,9 +104,9 @@ findbar {
 
 #sidebar-box {
     overflow: hidden;
-    width: var(--sidebar-min-width);
-    min-width: var(--sidebar-min-width);
-    max-width: var(--sidebar-min-width);
+    width: var(--sidebar-min-width) !important;
+    min-width: var(--sidebar-min-width) !important;
+    max-width: var(--sidebar-min-width) !important;
     position: relative;
     transition: all 0.2s ease;
     mask-image: linear-gradient(to left,
