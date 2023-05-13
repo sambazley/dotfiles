@@ -30,7 +30,7 @@ if [[ "$HOST" == "SamLinux" ]]; then
     bspc monitor DisplayPort-0 -d {1..9} 0
     bspc monitor DisplayPort-1 -d {1..9} 0
 elif [[ "$HOST" == "SamLaptop" ]]; then
-    bspc monitor eDP -d {1..9} 0
+    bspc monitor eDP1 -d {1..9} 0
 elif [[ "$HOST" == "TPLinuxVM" ]]; then
     bspc monitor Virtual1 -d {1..9} 0
 fi
@@ -62,6 +62,8 @@ bspc config normal_border_color "$bordercolor"
 bspc config presel_feedback_color "$urgentcolor"
 
 setxkbmap gb basic caps:hyper
+xmodmap -e "remove mod4 = Hyper_L"
+xmodmap -e "add mod3 = Hyper_L"
 
 export SXHKD_SHELL="/usr/bin/bash"
 export SXHKD_FIFO="/tmp/sxhkd.fifo"

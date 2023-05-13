@@ -2,21 +2,21 @@
     "height": 27,
     "marginvert": 6,
     "marginhoriz": 10,
-    "background": "#14192300",
+    "background": "#191e3300",
     "font": "Mono 9",
-    "divcolor": "#0d1118ff",
+    "divcolor": "#111523ff",
     "modules": [
         {
             "path": "/home/sam/blockbar/modules/background/background.so",
             "settings": {
-                "color": "#141923ff",
-                "bordercolor": "#0d1118ff"
+                "color": "#191e33ff",
+                "bordercolor": "#111523ff"
             }
         },
         {
             "path": "/home/sam/blockbar/modules/vbar/vbar.so",
             "settings": {
-                "barcolor": "#3c4b69ff",
+                "barcolor": "#4b5a99ff",
                 "width": 4
             }
         }
@@ -79,7 +79,7 @@
             "exec": "~/.config/blockbar/scripts/mail"
         },
         {
-            "exec": "BLOCK_INSTANCE=k10temp ~/.config/blockbar/scripts/temp",
+            "exec": "BLOCK_INSTANCE=thinkpad ~/.config/blockbar/scripts/temp",
             "interval": 5000
         },
         {

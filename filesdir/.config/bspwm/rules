@@ -6,6 +6,10 @@ instance=$3
 
 title="$(xtitle $wid)"
 
+if [[ "$class" == "submit" ]]; then
+    echo "state=floating"
+fi
+
 if [[ "$class" == "Steam" ]]; then
     if [[ "$title" != "Steam" ]]; then
         echo "state=floating"

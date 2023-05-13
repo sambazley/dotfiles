@@ -21,7 +21,7 @@ if [[ "$1" == "rofi" ]]; then
 fi
 
 if [ "$BLOCK_BUTTON" == "1" ]; then
-    alacritty --class update -e bash -c "yay && sudo -E pacdiff; echo Done - Press enter to exit; read" >/dev/null
+    alacritty --class update -e bash -c "yay; sudo -E pacdiff; echo Done - Press enter to exit; read" >/dev/null
     BLOCK_BUTTON= $0
     exit
 elif [ "$BLOCK_BUTTON" == "3" ]; then

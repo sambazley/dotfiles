@@ -113,7 +113,7 @@ findbar {
                                 #ffffffb3 0px,
                                 #ffffffe0 1px,
                                 white 10px);
-    -moz-box-direction: reverse;
+    flex-direction: column-reverse;
     z-index: 1;
 }
 
@@ -184,7 +184,6 @@ findbar {
     filter: invert(75%);
 }
 #nav-bar toolbarpaletteitem[id^="wrapper-customizableui-special-spring"], #nav-bar toolbarspring {
-    -moz-box-flex: 1 !important;
 }
 
 .findbar-button[checked="true"]:not(:hover) {
@@ -207,9 +206,9 @@ findbar {
 }
 
 #main-window[privatebrowsingmode="temporary"] #TabsToolbar {
-    display: -moz-box !important;
     background-color: var(--toolbar-bgcolor) !important;
-    -moz-appearance: none !important;
+    appearance: none !important;
+    display: inherit !important;
 }
 
 #main-window[privatebrowsingmode="temporary"] .tab-background:not([selected]) {
