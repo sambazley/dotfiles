@@ -147,7 +147,6 @@ function! s:insert_license()
 
         for p in ["", "../"]
             let pf = p . f
-            echom pf
             if filereadable(pf)
                 exec '0read' pf
                 norm G
@@ -157,7 +156,7 @@ function! s:insert_license()
         endfor
     endfor
 endfunction
-autocmd! BufNewFile *.{c,h} call <SID>insert_license()
+autocmd! BufNewFile *.{c,cpp,h} call <SID>insert_license()
 
 function! s:insert_gates()
     let gatename = substitute(toupper(expand("%:t")), "\\.", "_", "g")
