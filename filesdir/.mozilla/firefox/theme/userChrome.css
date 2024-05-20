@@ -217,3 +217,7 @@ findbar {
 findbar {
     color: initial !important;
 }
+
+#nav-bar {
+    border-top: none !important;
+}

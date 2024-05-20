@@ -31,6 +31,7 @@ if [[ "$HOST" == "SamLinux" ]]; then
     bspc monitor DisplayPort-1 -d {1..9} 0
 elif [[ "$HOST" == "SamLaptop" ]]; then
     bspc monitor eDP1 -d {1..9} 0
+    bspc monitor DP1 -d {1..9} 0
 elif [[ "$HOST" == "TPLinuxVM" ]]; then
     bspc monitor Virtual1 -d {1..9} 0
     bspc monitor Virtual2 -d {1..9} 0

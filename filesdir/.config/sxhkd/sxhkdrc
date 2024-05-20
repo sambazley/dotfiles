@@ -5,7 +5,7 @@ hyper + Return
 	alacritty --class floating
 
 super + d
-	rofi -show-icons -combi-modi drun,run -show combi -modi combi,run -m -1 -drun-match-fields name,exec,generic
+	rofi -show-icons -combi-modi drun,run -show combi -modi combi,calc -m -1 -drun-match-fields name,exec,generic
 
 hyper + d
 	~/.config/rofi/windowlist.sh
