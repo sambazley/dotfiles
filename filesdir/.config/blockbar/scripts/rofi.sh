@@ -32,10 +32,10 @@ function rofi_menu {
         padding=10
     fi
 
-    rofi_x_min=$(( output_x + padding ))
-    rofi_x_max=$(( output_x + output_width - width - padding ))
+    rofi_x_min=$(( padding ))
+    rofi_x_max=$(( output_width - width - padding ))
 
-    rofi_x=$(( BLOCK_X + BLOCK_WIDTH / 2 - width / 2 ))
+    rofi_x=$(( BLOCK_X + BLOCK_WIDTH / 2 - width / 2 - output_x ))
     rofi_x=$(( rofi_x < rofi_x_min ? rofi_x_min : rofi_x ))
     rofi_x=$(( rofi_x > rofi_x_max ? rofi_x_max : rofi_x ))
 
@@ -52,7 +52,7 @@ function rofi_menu {
 
         n=$(echo "$menu" | rofi -dmenu -i -format i -p "$prompt" \
             -me-select-entry '' -me-accept-entry "$click" \
-            -font "Mono 9" -m primary -location 1 -yoffset 30 \
+            -font "Mono 9" -m "$BAR_OUTPUT" -location 1 -yoffset 30 \
             -xoffset "$rofi_x" "$@" -selected-row "$row" -theme-str "\
             window {width: ${width}px;} $nohighlight \
             listview {lines: ${lines}; fixed-height: false;}\

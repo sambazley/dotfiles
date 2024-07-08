@@ -1,7 +1,7 @@
 #!/bin/bash
 
 status=$(acpi -b | head -n1 | awk '{print $3}' | sed 's/,//')
-perc=$(acpi -b | head -n1 | awk '{print $4}' | sed 's/[^0-9]*//g')
+perc=$(acpi -b | head -n1 | sed -rn 's/.*:[^0-9]*([0-9]+%).*/\1/p' | sed 's/%//')
 
 if [[ "$1" == "rofi" ]]; then
     echo "$status $perc%"
@@ -12,6 +12,10 @@ fi
 if [[ "$BLOCK_BUTTON" == "1" ]]; then
     . "$(dirname $0)/rofi.sh"
     rofi_menu "Battery" 30
+fi
+
+if [[ "$status" == "Not" ]] ; then
+    exit
 fi
 
 if [[ "$status" == "Charging" ]] || [[ "$status" == "Full" ]] ; then

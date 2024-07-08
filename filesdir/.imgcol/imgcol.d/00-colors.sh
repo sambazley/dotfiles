@@ -5,17 +5,17 @@ set -e
 #imgcols="$(imgcol "$IMG")"
 imgcols="$IMG
 #d6150f
-#116e88
+#11ae88
 #c87c62
 #52528d
-#955e94
-#155e81"
+#ab62a9
+#056594"
 
 #$color8 - $color14
 eval "$(echo "$imgcols" | awk 'BEGIN {i=8} {print "color"i++"=\""$0"\""}')"
 
 color0="$(colortool "$(colortool "$color8" v -70%)" s +0%)"
-color15="#c0c0c0"
+color15="#dddddd"
 
 for i in {1..7}; do
     eval color$i="$(eval colortool \$color$(( i + 8 )) v -10%)"

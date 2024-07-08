@@ -31,7 +31,6 @@ set scrolloff=4
 "enable cmdline menu
 set wildmenu
 "enable spellcheck
-set spell
 set spelllang=en_gb
 "set terminal title
 set title
@@ -132,7 +131,9 @@ set statusline+=%=
 set statusline+=%l\:%c
 
 if &t_Co != 8
-    source ~/.vim/theme.vim
+    if filereadable("~/.vim/theme.vim")
+        source ~/.vim/theme.vim
+    endif
 else
     hi SLModified ctermfg=0 ctermbg=3
     hi SLReadOnly term=bold ctermbg=1
@@ -200,8 +201,9 @@ let g:lsp_peek_alignment = "top"
 let g:lsp_preview_max_height = 20
 let g:lsp_preview_autoclose = 0
 let g:lsp_highlight_references_enabled = 1
-let g:lsp_diagnostics_echo_cursor = 1
 let g:lsp_text_edit_enabled = 0
+let g:lsp_diagnostics_virtual_text_align = "right"
+let g:lsp_diagnostics_virtual_text_insert_mode_enabled = 1
 let g:asyncomplete_auto_popup = 0
 
 if &term == 'xterm-color'

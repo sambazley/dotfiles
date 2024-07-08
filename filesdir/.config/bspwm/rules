@@ -6,6 +6,11 @@ instance=$3
 
 title="$(xtitle $wid)"
 
+if [[ "$class" == "ui" ]]; then
+    echo "state=floating"
+    echo "rectangle=1000x620+510+260"
+fi
+
 if [[ "$class" == "submit" ]]; then
     echo "state=floating"
 fi
