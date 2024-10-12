@@ -8,6 +8,7 @@
     --toolbar-color: white !important;
     --toolbarbutton-icon-fill-opacity: 90% !important;
     --toolbar-start-end-padding: 4px !important;
+    --toolbar-field-color: black !important;
     --avatar-image-url: url(chrome://browser/skin/fxa/avatar.svg) !important;
 
     --toolbar-field-focus-border-color: transparent !important;

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 status=$(acpi -b | head -n1 | awk '{print $3}' | sed 's/,//')
-perc=$(acpi -b | head -n1 | sed -rn 's/.*:[^0-9]*([0-9]+%).*/\1/p' | sed 's/%//')
+perc=$(acpi -b | grep -v unavailable | head -n1 | sed -rn 's/.*:[^0-9]*([0-9]+%).*/\1/p' | sed 's/%//')
 
 if [[ "$1" == "rofi" ]]; then
     echo "$status $perc%"

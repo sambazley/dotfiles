@@ -206,6 +206,8 @@ let g:lsp_diagnostics_virtual_text_align = "right"
 let g:lsp_diagnostics_virtual_text_insert_mode_enabled = 1
 let g:asyncomplete_auto_popup = 0
 
+let g:context_highlight_tag = '<hide>'
+
 if &term == 'xterm-color'
     let g:indentLine_char = '|'
     let g:lsp_auto_enable = 0
@@ -268,6 +270,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'jceb/vim-orgmode'
     Plug 'sambazley/vim-csveval'
     Plug 'joom/latex-unicoder.vim'
+    Plug 'wellle/context.vim'
 call plug#end()
 
 set textwidth=80
