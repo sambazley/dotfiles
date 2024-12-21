@@ -87,10 +87,12 @@ findbar {
 
 #new-tab-button::after {
     content: "+";
-    position: absolute;
-    left: 11px;
-    top: -5px;
     font-size: 32px;
+    line-height: 0px;
+    width: 0px;
+    height: 0px;
+    position: relative;
+    left: -21px;
 }
 
 #back-button .toolbarbutton-icon,
@@ -115,7 +117,7 @@ findbar {
                                 #ffffffe0 1px,
                                 white 10px);
     flex-direction: column-reverse;
-    z-index: 1;
+    z-index: 1000;
 }
 
 #sidebar-box:hover,
