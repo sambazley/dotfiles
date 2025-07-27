@@ -46,6 +46,10 @@ findbar {
     color: var(--toolbar-bgcolor);
 }
 
+#browser {
+    background: white;
+}
+
 #tabbrowser-tabs {
     visibility: collapse !important;
 }
@@ -62,10 +66,6 @@ findbar {
 #main-window[inDOMFullscreen] #sidebar-box,
 #main-window[inFullscreen] #sidebar-box {
     display: none !important;
-}
-
-#browser {
-    background: black;
 }
 
 #tabbrowser-tabbox {
@@ -106,6 +106,7 @@ findbar {
 }
 
 #sidebar-box {
+    background-color: white;
     overflow: hidden;
     width: var(--sidebar-min-width) !important;
     min-width: var(--sidebar-min-width) !important;
@@ -154,7 +155,6 @@ findbar {
 #sidebar-header {
     padding: 0px !important;
     height: 30px;
-    border-top: 1px solid transparent;
     transition: all 0.2s ease;
     opacity: 0;
 }

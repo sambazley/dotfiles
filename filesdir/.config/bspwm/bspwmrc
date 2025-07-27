@@ -86,6 +86,8 @@ fork sudo firewall-applet
 
 systemctl start --user dunst
 
+pkill -9 blockbar
+
 ~/blockbar/blockbar &
 sleep 0.5
 picom --config ~/.config/picom/config &
