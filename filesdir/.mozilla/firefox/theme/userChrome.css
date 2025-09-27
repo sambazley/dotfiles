@@ -4,6 +4,7 @@
     --toolbar-bgcolor: var(--color0) !important;
     --toolbar-bgimage: none !important;
 
+    --toolbar-field-background-color: #ddd !important;
     --toolbarbutton-border-radius: 2px !important;
     --toolbar-color: white !important;
     --toolbarbutton-icon-fill-opacity: 90% !important;

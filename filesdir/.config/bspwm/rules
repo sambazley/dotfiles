@@ -63,3 +63,7 @@ case "$(xprop -id "$wid" _NET_WM_WINDOW_TYPE)" in
         echo "layer=above"
         ;;
 esac
+
+if [[ "$class" == "Sxiv" ]]; then
+    echo "state=floating"
+fi
