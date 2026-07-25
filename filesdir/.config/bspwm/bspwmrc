@@ -31,7 +31,11 @@ do
     bspc monitor "$m" -d {1..9} 0
 done
 
-feh --bg-fill ~/wallpapers/11-Big-Sur-Day-6k.jpg
+if [[ "$HOST" == "SamLinux" ]]; then
+    feh --bg-fill ~/wallpapers/10-13-6k.jpg
+else
+    feh --bg-fill ~/wallpapers/11-Big-Sur-Day-6k.jpg
+fi
 
 bspc rule -r "*"
 

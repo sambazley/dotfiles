@@ -1,26 +1,17 @@
 {
-    "height": 27,
+    "height": 30,
     "marginvert": 6,
     "marginhoriz": 10,
-    "background": "#14192800",
-    "font": "Mono 9",
+    "padding": 8,
+    "background": "#00000000",
+    "foreground": "#d4e5ffff",
+    "font": "Inter 9.5",
+    "divwidth": 0,
     "divcolor": "#0e111cff",
     "traybar": "DisplayPort-0",
     "modules": [
         {
-            "path": "/home/sam/blockbar/modules/background/background.so",
-            "settings": {
-                "color": "#141928ff",
-                "bordercolor": "#0e111cff"
-            }
-        },
-        {
-            "path": "/home/sam/blockbar/modules/subblocks/subblocks.so",
-            "settings": {
-            }
-        },
-        {
-            "path": "/home/sam/blockbar/modules/text/text.so",
+            "path": "/home/sam/blockbar/.claude/worktrees/blockbar-visual-overhaul/modules/text/text.so",
             "settings": {
             }
         },
@@ -34,8 +25,17 @@
         {
             "path": "/home/sam/blockbar/modules/constwidth/constwidth.so",
             "settings": {
-                "barcolor": "#3c4b78ff",
-                "width": 4
+            }
+        },
+        {
+            "path": "/home/sam/blockbar/.claude/worktrees/blockbar-visual-overhaul/modules/frosted-bg/frosted-bg.so",
+            "settings": {
+            }
+        },
+        {
+            "path": "/home/sam/blockbar/.claude/worktrees/blockbar-visual-overhaul/modules/reveal/reveal.so",
+            "settings": {
+                "duration": 400
             }
         }
     ],
@@ -84,11 +84,12 @@
             "nodiv": true
         },
         {
+            "module": "reveal",
             "exec": "~/.config/blockbar/scripts/time",
             "interval": 10000
         },
         {
-            "module": "constwidth",
+            "module": "reveal",
             "exec": "~/.config/blockbar/scripts/updates",
             "interval": 1.8e+06
         },

@@ -13,7 +13,6 @@
 755 ./.config/blockbar/scripts/cpu_graph
 755 ./.config/blockbar/scripts/cpu_usage
 755 ./.config/blockbar/scripts/disk-usage
-755 ./.config/blockbar/scripts/globalmenu
 755 ./.config/blockbar/scripts/ip
 755 ./.config/blockbar/scripts/mail
 644 ./.config/blockbar/scripts/Makefile
@@ -71,7 +70,6 @@
 644 ./.config/systemd/user/mpDris2@.service
 644 ./.config/systemd/user/mpris-proxy.service
 644 ./.config/systemd/user/nas.service
-644 ./.config/systemd/user/openclaw-gateway.service
 644 ./.config/systemd/user/r2e.service
 644 ./.config/systemd/user/r2e.timer
 755 ./.config/zathura
