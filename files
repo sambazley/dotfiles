@@ -1,6 +1,8 @@
 .config/bspwm
 .config/sxhkd/sxhkdrc
 
+.config/fontconfig
+
 .config/blockbar/desktopconf
 .config/blockbar/laptopconf
 .config/blockbar/tplinuxvmconf

@@ -33,6 +33,12 @@
 755 ./.config/bspwm
 755 ./.config/bspwm/bspwmrc
 755 ./.config/bspwm/rules
+755 ./.config/fontconfig
+755 ./.config/fontconfig/conf.d
+644 ./.config/fontconfig/conf.d/00-local.conf
+644 ./.config/fontconfig/conf.d/01-inter.conf
+644 ./.config/fontconfig/conf.d/01-inter-display.conf
+777 ./.config/fontconfig/conf.d/75-twemoji.conf
 755 ./.config/gtk-3.0
 644 ./.config/gtk-3.0/settings.ini
 755 ./.config/gtk-4.0
