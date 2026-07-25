@@ -232,9 +232,11 @@ int main(int argc, char *argv[])
 		if (desktop == focused) {
 			printf("\"background\":\"" STR(focusedcolor) "\"");
 		} else if (desktop->urgent) {
-			printf("\"background\":\"" STR(urgentcolor) "\"");
+			printf("\"background\":\"" STR(urgentcolor) "\","
+			       "\"foreground\":\"" STR(urgentfg) "\"");
 		} else {
-			printf("\"background\":\"" STR(unfocusedcolor) "\"");
+			printf("\"background\":\"" STR(unfocusedcolor) "\","
+			       "\"foreground\":\"" STR(unfocusedfg) "\"");
 		}
 		printf("}");
 

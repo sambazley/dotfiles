@@ -12,3 +12,6 @@ wintypes:
         focus = false;
     };
 };
+
+blur-method = "dual_kawase";
+blur-strength = 1;

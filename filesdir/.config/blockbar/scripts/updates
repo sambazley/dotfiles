@@ -30,5 +30,6 @@ elif [ "$BLOCK_BUTTON" == "3" ]; then
 fi
 
 if [[ "$NUM" > "0" ]]; then
-    printf "\uf381 %d\n%d\n" "$NUM" "$NUM"
+    echo -e "\uf381"
+    echo "  $NUM"
 fi

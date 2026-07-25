@@ -33,7 +33,7 @@ blinking = "On"
 TERM = "xterm-256color"
 
 [font]
-size = 9.0
+size = 9.5
 
 [window.dimensions]
 columns = 90

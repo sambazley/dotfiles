@@ -1,6 +1,6 @@
 ~/.config/rofi/config.rasi
 configuration {
-	font: "Mono 10";
+	font: "Inter,11";
 	terminal: "alacritty";
 	scroll-method: 1;
 
@@ -12,7 +12,7 @@ configuration {
 
 * {
 	background-color: <% color0 %>;
-	spacing: 4;
+	spacing: 6;
 	foreground: <% color7 %>;
 	selected-foreground: <% focusedcolor %>;
 	border-color: <% bordercolor %>;
@@ -27,7 +27,7 @@ window {
 }
 
 mainbox {
-	padding: 10px;
+	padding: 15px;
 	border: 2px;
 	border-color: @border-color;
 }
@@ -54,6 +54,7 @@ listview {
 	lines: 8;
 	cycle: false;
 	border: 0px;
+	spacing: 5px;
 }
 
 element normal normal, element alternate normal {
@@ -68,7 +69,7 @@ element selected normal {
 
 textbox {
 	text-color: @foreground;
-	font: "Mono 9";
+	font: "Inter,12";
 	horizontal-align: 0.5;
 }
 

@@ -8,7 +8,7 @@ if [[ "$text" == "" ]]; then
     exit
 fi
 
-source ~/.imgcol/generated/colors.sh
+focusedcolor="#ffffff44"
 
 THEME="$(cat "$script_dir"/sbtheme.h | awk -f <(cat - <<EOF
 BEGIN {

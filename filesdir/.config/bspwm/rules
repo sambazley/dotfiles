@@ -6,7 +6,15 @@ instance=$3
 
 title="$(xtitle $wid)"
 
+if [[ "$class" == "flameshot" && "$title" == "flameshot" ]]; then
+    echo "state=fullscreen"
+fi
+
 if [[ "$class" == "ui" ]]; then
+    echo "state=floating"
+fi
+
+if [[ "$class" == "ss" ]]; then
     echo "state=floating"
 fi
 
@@ -63,7 +71,3 @@ case "$(xprop -id "$wid" _NET_WM_WINDOW_TYPE)" in
         echo "layer=above"
         ;;
 esac
-
-if [[ "$class" == "Sxiv" ]]; then
-    echo "state=floating"
-fi

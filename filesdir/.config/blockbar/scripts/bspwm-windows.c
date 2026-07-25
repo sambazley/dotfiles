@@ -14,6 +14,7 @@ static int subblock;
 struct Node {
 	char *id;
 	char *text;
+	char *icon;
 	int urgent;
 	xcb_window_t id_numeric;
 };
@@ -152,6 +153,14 @@ static int get_nodes()
 		node->text = malloc(strlen(title) + 1);
 		strcpy(node->text, title);
 		capitalize(node->text);
+
+		node->icon = malloc(strlen(title) + 1);
+		strcpy(node->icon, title);
+		for (int i = 0; node->icon[i]; i++) {
+			if (node->icon[i] >= 'A' && node->icon[i] <= 'Z')
+				node->icon[i] += 32;
+		}
+
 		free(wm_class_reply);
 
 		node_id = strtok(NULL, "\n");
@@ -202,6 +211,7 @@ static void cleanup()
 	for (int i = 0; i < node_count; i++) {
 		free(nodes[i].id);
 		free(nodes[i].text);
+		free(nodes[i].icon);
 	}
 	free(nodes);
 }
@@ -269,6 +279,10 @@ int main(int argc, char *argv[])
 
 		printf("\"text\":\"%s\",", node->text);
 
+		if (node->icon && node->icon[0]) {
+			printf("\"icon\":\"%s\",", node->icon);
+		}
+
 		for (int n = 0; n < sizeof(properties) / sizeof(struct Property); n++) {
 			struct Property p = properties[n];
 			printf("\"%s\":%s,", p.key, p.str);
@@ -278,11 +292,13 @@ int main(int argc, char *argv[])
 		#define STR(x) STR2(x)
 
 		if (node->urgent) {
-			printf("\"background\":\"" STR(urgentcolor) "\"");
+			printf("\"background\":\"" STR(urgentcolor) "\","
+			       "\"foreground\":\"" STR(urgentfg) "\"");
 		} else if (node == focused_node) {
 			printf("\"background\":\"" STR(focusedcolor) "\"");
 		} else {
-			printf("\"background\":\"" STR(unfocusedcolor) "\"");
+			printf("\"background\":\"" STR(unfocusedcolor) "\","
+			       "\"foreground\":\"" STR(unfocusedfg) "\"");
 		}
 
 		printf("}");

@@ -2,7 +2,7 @@
 [global]
 markup=yes
 plain_text=no
-font=Mono 10
+font=Inter 12
 format="<b>%s</b>\n%b %p"
 sort=yes
 indicate_hidden=yes
@@ -19,7 +19,7 @@ height=(0,100)
 origin=bottom-right
 offset=15x15
 shrink=yes
-transparency=5
+transparency=0
 
 idle_threshold=10
 monitor=0

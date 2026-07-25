@@ -38,7 +38,7 @@ hi DiffAdd term=bold ctermbg=4 guibg=#274627
 hi DiffChange term=bold ctermbg=5 guibg=#274346
 hi DiffDelete term=bold ctermfg=12 guifg=<% color12 %> ctermbg=6 guibg=#280d0d
 hi DiffText term=reverse cterm=bold gui=bold ctermbg=9 guibg=<% color9 %>
-hi SignColumn term=standout ctermfg=14 guifg=<% color14 %> ctermbg=242 guibg=#6c6c6c
+hi SignColumn term=standout ctermfg=14 guifg=<% color14 %> ctermbg=0 guibg=<% color0 %>
 hi Conceal ctermfg=239 guifg=#4e4e4e guibg=bg
 hi SpellBad term=reverse ctermbg=9 guibg=<% unfocusedcolor %> guisp=Red
 hi SpellCap term=reverse ctermbg=12 guibg=bg guisp=Blue
@@ -134,3 +134,7 @@ let g:terminal_ansi_colors = [
     \ "<% color14 %>",
     \ "<% color15 %>",
     \ ]
+
+highlight GitGutterAdd    cterm=bold guifg=<% color2 %> ctermfg=2
+highlight GitGutterChange cterm=bold guifg=<% color3 %> ctermfg=3
+highlight GitGutterDelete cterm=bold guifg=<% color1 %> ctermfg=1

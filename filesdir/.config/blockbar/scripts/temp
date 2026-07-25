@@ -24,14 +24,10 @@ if [ -z "$TEMP" ]; then
     exit
 fi
 
-if [ "$TEMP" -lt "$CRIT" ]; then
-    COLOR="#FFFFFF"
-else
-    COLOR="#FF0000"
-fi
-
 OUT="$(bc <<< "scale=1; $TEMP/1000")°C"
+echo $OUT
 
-echo $OUT
-echo $OUT
-echo $COLOR
+if [ "$TEMP" -gt "$CRIT" ]; then
+    echo "#FF0000"
+    echo "#FF0000"
+fi

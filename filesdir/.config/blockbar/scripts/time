@@ -4,4 +4,5 @@ if [ "$BLOCK_BUTTON" == "1" ]; then
     gsimplecal
 fi
 
-date '+%Y-%m-%d %H:%M'
+date '+%H:%M'
+echo -n '  '; date '+%Y-%m-%d'

@@ -131,7 +131,7 @@ set statusline+=%=
 set statusline+=%l\:%c
 
 if &t_Co != 8
-    if filereadable("~/.vim/theme.vim")
+    if filereadable(glob("~/.vim/theme.vim"))
         source ~/.vim/theme.vim
     endif
 else
@@ -195,8 +195,6 @@ augroup END
 
 let g:vhdl_indent_genportmap = 0
 
-set signcolumn=no
-
 let g:lsp_peek_alignment = "top"
 let g:lsp_preview_max_height = 20
 let g:lsp_preview_autoclose = 0
@@ -250,6 +248,34 @@ if executable('vim-language-server')
                 \ 'allowlist': ['vim'],
                 \ })
 endif
+if executable('vala-language-server')
+    au User lsp_setup call lsp#register_server({
+                \ 'name': 'vala-language-server',
+                \ 'cmd': {server_info->[&shell, &shellcmdflag, 'vala-language-server']},
+                \ 'allowlist': ['vala'],
+                \ })
+endif
+if executable('vscode-css-languageserver')
+    au User lsp_setup call lsp#register_server({
+                \ 'name': 'vscode-css-languageserver',
+                \ 'cmd': {server_info->[&shell, &shellcmdflag, 'vscode-css-languageserver --stdio']},
+                \ 'allowlist': ['css'],
+                \ })
+endif
+if executable('vscode-html-languageserver')
+    au User lsp_setup call lsp#register_server({
+                \ 'name': 'vscode-html-languageserver',
+                \ 'cmd': {server_info->[&shell, &shellcmdflag, 'vscode-html-languageserver --stdio']},
+                \ 'allowlist': ['html'],
+                \ })
+endif
+if executable('pylsp')
+    au User lsp_setup call lsp#register_server({
+                \ 'name': 'pylsp',
+                \ 'cmd': {server_info->[&shell, &shellcmdflag, 'pylsp']},
+                \ 'allowlist': ['python'],
+                \ })
+endif
 
 nnoremap gd :LspDefinition<CR>
 
@@ -271,6 +297,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'sambazley/vim-csveval'
     Plug 'joom/latex-unicoder.vim'
     Plug 'wellle/context.vim'
+    Plug 'airblade/vim-gitgutter'
 call plug#end()
 
 set textwidth=80

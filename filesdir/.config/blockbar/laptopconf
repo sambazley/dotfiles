@@ -1,23 +1,36 @@
 {
-    "height": 27,
+    "height": 30,
     "marginvert": 6,
     "marginhoriz": 10,
-    "background": "#191e3300",
-    "font": "Mono 9",
+    "radius": 14,
+    "padding": 8,
+    "background": "#00000000",
+    "foreground": "#d4e5ffff",
+    "font": "Inter,10",
+    "divwidth": 0,
     "divcolor": "#111523ff",
     "modules": [
         {
-            "path": "/home/sam/blockbar/modules/background/background.so",
+            "path": "/home/sam/blockbar/.claude/worktrees/blockbar-visual-overhaul/modules/frosted-bg/frosted-bg.so",
             "settings": {
-                "color": "#191e33ff",
-                "bordercolor": "#111523ff"
             }
         },
         {
             "path": "/home/sam/blockbar/modules/vbar/vbar.so",
             "settings": {
-                "barcolor": "#4b5a99ff",
+                "barcolor": "#3d6dabff",
                 "width": 4
+            }
+        },
+        {
+            "path": "/home/sam/blockbar/.claude/worktrees/blockbar-visual-overhaul/modules/subblocks/subblocks.so",
+            "settings": {
+            }
+        },
+        {
+            "path": "/home/sam/blockbar/.claude/worktrees/blockbar-visual-overhaul/modules/reveal/reveal.so",
+            "settings": {
+                "duration": 400
             }
         }
     ],
@@ -34,14 +47,13 @@
             "eachmon": true
         },
         {
-            "module": "vbar",
-            "exec": "~/.config/blockbar/scripts/disk-usage",
-            "interval": 2000
-        },
-        {
             "module": "subblocks",
             "exec": "~/.config/blockbar/scripts/sxhkd",
             "nodiv": true
+        },
+        {
+            "module": "subblocks",
+            "exec": "~/.config/blockbar/scripts/globalmenu"
         }
     ],
     "center": [
@@ -60,14 +72,18 @@
             "nodiv": true
         },
         {
+            "module": "constwidth",
             "exec": "~/.config/blockbar/scripts/volume",
             "paddingright": -1,
             "nodiv": true
         },
         {
-            "exec": "~/.config/blockbar/scripts/battery"
+            "module": "reveal",
+            "exec": "~/.config/blockbar/scripts/battery",
+            "interval": 60000
         },
         {
+            "module": "reveal",
             "exec": "~/.config/blockbar/scripts/time",
             "interval": 10000
         },
